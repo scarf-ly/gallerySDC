@@ -1,2 +1,2 @@
 # gallery
-a dynamic gallery of food for munch
+A dynamic gallery of food photographs for Munch, a web-based restaurant review platform. 

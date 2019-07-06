@@ -51,7 +51,7 @@ const seedAllUsers = (callback) => {
 
 const seedAllURLUsers = (callback) => {
   let urlUsers = seedURLUsers();
-  db.query ('insert into users (name, URL) values ?', [urlUsers], (err)=>{
+  db.query ('insert into users (name, userURL) values ?', [urlUsers], (err)=>{
     if (err){
       console.log(err);
     } else {

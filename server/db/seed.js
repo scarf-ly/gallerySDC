@@ -75,7 +75,7 @@ const seedAllImages = (callback) => {
 
 //Seed Database with all functions
 
-seedAllUsers(()=>seedAllURLUsers(()=>seedAllImages((err, message)=>{
+seedAllUsers(()=>seedAllURLUsers(()=>seedAllImages((err, message) => {
   if (err){
     console.log(err);
   } else {

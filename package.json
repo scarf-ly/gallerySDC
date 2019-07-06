@@ -4,9 +4,10 @@
   "description": "A dynamic photo gallery for Munch, a web-based restaurant review platform.",
   "main": "index.js",
   "scripts": {
-    "test": "./client/test.js",
+    "test": "jest",
     "react-dev": "webpack -d --watch",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "seed": "node ./server/db/seed.js"
   },
   "repository": {
     "type": "git",
@@ -23,12 +24,16 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "mysql": "^2.17.1",
+    "node-mysql": "^0.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

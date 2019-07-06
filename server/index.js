@@ -8,7 +8,7 @@ const db = require ('./db/index.js');
 app.use(express.static('/Users/TinaLe/gallery/client/dist'))
 
 app.get('/gallery', (req, res)=>{
-    db.query("SELECT * from users, images where images.userID = users.id", (err, data)=>{
+    db.query("SELECT * from users INNER JOIN images ON images.userID = users.id", (err, data)=>{
         if (err) {
             res.status(500).send(err); 
         } else {

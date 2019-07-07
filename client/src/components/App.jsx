@@ -78,7 +78,7 @@ class App extends React.Component {
         >
           <h2 ref={subtitle => this.subtitle = subtitle}>Modal Mockup</h2>
           <p><button onClick={this.closeModal}>close</button></p>
-          <img src={this.state.modalURL} width="400"/>
+          <img src={this.state.modalURL} width="500"/>
         </Modal>
         </div>
         )

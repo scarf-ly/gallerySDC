@@ -1,16 +1,27 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
+import sampleData from '../data/sampleData.js'
 
 
 const customStyles = {
     content : {
-      background: "rgba(0, 0, 0, 0.7)"
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        height: '625px',
+        width: '900px',
+        padding: "0",
+        border: "0",
+        background: "rgba(0, 0, 0, 0.7)",
+        overflow: "hidden"
     },
     overlay: {
-        background: "rgba(0, 0, 0, 0.7)"
-    }
-
+        background: "rgba(0, 0, 0, 0.7)",
+    },
   };
 
 
@@ -19,31 +30,31 @@ Modal.setAppElement('#app')
 class App extends React.Component {
     constructor(props){
         super(props);
-        this.getGalleryData = this.getGalleryData.bind(this);
         this.state = {
             images: [],
-            current: [], 
+            current: sampleData, 
             modalIsOpen: false,
             modalURL: ''
         } 
-
+        
+        // this.getGalleryData = this.getGalleryData.bind(this);
         this.openModal = this.openModal.bind(this);
-        this.afterOpenModal = this.afterOpenModal.bind(this);
+        // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
-    componentDidMount() {
-        this.getGalleryData(); 
-    }
+    // componentDidMount() {
+    //     this.getGalleryData(); 
+    // }
 
-    getGalleryData() {
-        axios.get('/gallery')
-        .then(({data})=> this.setState({
-            images: data,
-            current: data.slice(0, 3)
-        }))
-        .catch((err)=>console.log(err))
-    }
+    // getGalleryData() {
+    //     axios.get('/gallery')
+    //     .then(({data})=> this.setState({
+    //         images: data,
+    //         current: data.slice(0, 3)
+    //     }))
+    //     .catch((err)=>console.log(err))
+    // }
 
 
     openModal(e, image) {
@@ -53,10 +64,10 @@ class App extends React.Component {
             modalURL: image});
     }
     
-    afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        this.subtitle.style.color = 'pink';
-    }
+    // afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     this.subtitle.style.color = 'pink';
+    // }
     
     closeModal() {
         this.setState({modalIsOpen: false});
@@ -76,14 +87,15 @@ class App extends React.Component {
           onRequestClose={this.closeModal}
           style={customStyles}
         >
-          <h2 ref={subtitle => this.subtitle = subtitle}>Modal Mockup</h2>
-          <p><button onClick={this.closeModal}>close</button></p>
-          <img src={this.state.modalURL} width="500"/>
+          {/* <h2 ref={subtitle => this.subtitle = subtitle} style={{float: 'right'}}>Modal Mockup</h2> */}
+          <img src={this.state.modalURL} height="612px" width="900px" style={{objectFit: 'contain'}}/>
         </Modal>
         </div>
         )
     }
 }
+
+
 
 export default App;
 

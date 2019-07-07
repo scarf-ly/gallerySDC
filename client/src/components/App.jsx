@@ -5,13 +5,12 @@ import Modal from 'react-modal';
 
 const customStyles = {
     content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
+      background: "rgba(0, 0, 0, 0.7)"
+    },
+    overlay: {
+        background: "rgba(0, 0, 0, 0.7)"
     }
+
   };
 
 
@@ -76,12 +75,10 @@ class App extends React.Component {
           onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
-          contentLabel="Example Modal"
         >
- 
           <h2 ref={subtitle => this.subtitle = subtitle}>Modal Mockup</h2>
           <p><button onClick={this.closeModal}>close</button></p>
-          <img src={this.state.modalURL} width="350"/>
+          <img src={this.state.modalURL} width="400"/>
         </Modal>
         </div>
         )

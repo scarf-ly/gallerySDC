@@ -57,7 +57,7 @@ class App extends React.Component {
         <div>
             <ImageGallery 
             images={this.state.current}
-            onOpen={this.openModal}
+            onOpenClick={this.openModal}
             onRequestClose={this.closeModal}
             style={customStyles} 
             />

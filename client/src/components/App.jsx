@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
-import sampleData from '../data/sampleData.js'
-import customStyles from './style/style.js';
+import sampleData from '../data/sampleData.js';
+import customStyles from './style/modalStyle.js';
+import ImageGallery from '/Users/TinaLe/Documents/gallery/client/src/components/ImageGallery.jsx';
 
 Modal.setAppElement('#app')
 
@@ -13,13 +14,16 @@ class App extends React.Component {
             images: [],
             current: sampleData, 
             modalIsOpen: false,
-            modalURL: ''
+            modalURL: '',
+            hover: false
         } 
         
         this.getGalleryData = this.getGalleryData.bind(this);
         this.openModal = this.openModal.bind(this);
         // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.hover = this.hover.bind(this);
+        this.hoverOut = this.hoverOut.bind(this);
     }
 
     componentDidMount() {
@@ -51,24 +55,37 @@ class App extends React.Component {
         this.setState({modalIsOpen: false});
     }
 
+    hover() {
+        this.setState({hover: true});
+    }
+
+    hoverOut() {
+        this.setState({hover: false});
+    }
+
     render(){
         return (
         <div>
-            {this.state.current.map(image => (
-                <a href='' onClick ={(e)=>this.openModal(e, image.URL)}>
-                    <img src={image.URL} width="220" height="220" style={{objectFit: 'cover'}}/>
-                </a>
-            ))}
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onAfterOpen={this.afterOpenModal}
-          onRequestClose={this.closeModal}
-          style={customStyles}
-        >
-          {/* <h2 ref={subtitle => this.subtitle = subtitle} style={{float: 'right'}}>Modal Mockup</h2> */}
-          <img src={this.state.modalURL} height="625px" width="900px" style={{objectFit: 'contain'}}/>
-          <div style={{gridColumn: "2/span 1", backgroundColor: "white"}}>Munch Modal Mockup</div>
-        </Modal>
+            <ImageGallery 
+            onHover={this.hover}
+            onHoverOut={this.hoverOut}
+            hover={this.state.hover}
+            images={this.state.current}
+            onOpenClick={this.openModal}
+            onRequestClose={this.closeModal}
+            style={customStyles} 
+            />
+
+            <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            >
+            {/* <h2 ref={subtitle => this.subtitle = subtitle} style={{float: 'right'}}>Modal Mockup</h2> */}
+            <img src={this.state.modalURL} height="625px" width="900px" style={{objectFit: 'contain'}}/>
+            <div style={{gridColumn: "2/span 1", backgroundColor: "white"}}>Munch Modal Mockup</div>
+            </Modal>
         </div>
         )
     }

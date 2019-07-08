@@ -1,0 +1,14 @@
+
+.foodImg {
+    width: 220px;
+    height: 220px; 
+    vertical-align: middle;
+}
+
+.foodImg:hover {
+    width: 250px;
+    height: 250px; 
+}
+
+
+

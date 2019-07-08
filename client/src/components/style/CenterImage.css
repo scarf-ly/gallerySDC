@@ -4,3 +4,9 @@
     height: 250px;
     vertical-align: middle; 
 }
+
+.centerFoodImgSmall {
+    width: 220px;
+    height: 220px;
+    vertical-align: middle; 
+}

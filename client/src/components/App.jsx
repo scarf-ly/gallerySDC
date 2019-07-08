@@ -14,13 +14,16 @@ class App extends React.Component {
             images: [],
             current: sampleData, 
             modalIsOpen: false,
-            modalURL: ''
+            modalURL: '',
+            hover: false
         } 
         
         // this.getGalleryData = this.getGalleryData.bind(this);
         this.openModal = this.openModal.bind(this);
         // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.hover = this.hover.bind(this);
+        this.hoverOut = this.hoverOut.bind(this);
     }
 
     // componentDidMount() {
@@ -52,15 +55,27 @@ class App extends React.Component {
         this.setState({modalIsOpen: false});
     }
 
+    hover() {
+        this.setState({hover: true});
+    }
+
+    hoverOut() {
+        this.setState({hover: false});
+    }
+
     render(){
         return (
         <div>
             <ImageGallery 
+            onHover={this.hover}
+            onHoverOut={this.hoverOut}
+            hover={this.state.hover}
             images={this.state.current}
             onOpenClick={this.openModal}
             onRequestClose={this.closeModal}
             style={customStyles} 
             />
+
             <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}

@@ -18,7 +18,7 @@ class App extends React.Component {
             hover: false
         } 
         
-        this.getGalleryData = this.getGalleryData.bind(this);
+        // this.getGalleryData = this.getGalleryData.bind(this);
         this.openModal = this.openModal.bind(this);
         // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -26,18 +26,18 @@ class App extends React.Component {
         this.hoverOut = this.hoverOut.bind(this);
     }
 
-    componentDidMount() {
-        this.getGalleryData(); 
-    }
+    // componentDidMount() {
+    //     this.getGalleryData(); 
+    // }
 
-    getGalleryData() {
-        axios.get('/gallery')
-        .then(({data})=> this.setState({
-            images: data,
-            current: data.slice(0, 3)
-        }))
-        .catch((err)=>console.log(err))
-    }
+    // getGalleryData() {
+    //     axios.get('/gallery')
+    //     .then(({data})=> this.setState({
+    //         images: data,
+    //         current: data.slice(0, 3)
+    //     }))
+    //     .catch((err)=>console.log(err))
+    // }
 
     openModal(e, image) {
         e.preventDefault(); 

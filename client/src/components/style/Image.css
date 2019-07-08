@@ -1,14 +1,37 @@
+.overlay {
+    position: relative;
+    vertical-align: bottom; 
+    width: 300px;
+}
+
+.after {
+    position: absolute;
+    top: -24px;
+    padding-bottom: 24px;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #FFF;
+    font-size: 20px; 
+    background: rgba(0, 0, 0, .5);
+}
+
+.overlay:hover .after {
+    display: block;
+}
 
 .foodImg {
     width: 220px;
     height: 220px; 
-    vertical-align: middle;
+    vertical-align: middle; 
 }
 
 .foodImg:hover {
     width: 250px;
     height: 250px; 
 }
+
 
 
 

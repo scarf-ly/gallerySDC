@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "react-dev": "webpack -d --watch",
-    "server": "nodemon server/index.js",
+    "start": "nodemon server/index.js",
     "seed": "node ./server/db/seed.js"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "mysql": "^2.17.1",
     "node-mysql": "^0.4.2",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-modal": "^3.8.2"
   }
 }

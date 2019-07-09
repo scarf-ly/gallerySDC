@@ -26,7 +26,7 @@
 .foodImg {
     width: 220px;
     height: 220px; 
-    vertical-align: middle; 
+    vertical-align: middle;  
 }
 
 .foodImg:hover {
@@ -35,7 +35,7 @@
 }
 
 .userImage {
-    margin: 4px; 
+    margin: 6px; 
     height: 30px; 
     width: 30px; 
     float: left; 
@@ -43,6 +43,7 @@
 }
 
 .description {
+    padding-top: 6px;
     padding-left: 3px; 
     font-weight: bold;
 }

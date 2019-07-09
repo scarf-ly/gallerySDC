@@ -1,8 +1,32 @@
+.overlay {
+    position: relative;
+    vertical-align: bottom; 
+    width: 300px;
+}
+
+.caption {
+    display: none;
+    position: absolute;
+    top: -24px;
+    padding-bottom: 24px;
+    left: 0; 
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+    font-size: 12px; 
+    font-family: 'Helvetica Neue';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, .5);
+}
+
+.overlay:hover .caption {
+    display: block;
+}
 
 .foodImg {
     width: 220px;
     height: 220px; 
-    vertical-align: middle;
+    vertical-align: middle;  
 }
 
 .foodImg:hover {
@@ -10,5 +34,18 @@
     height: 250px; 
 }
 
+.userImage {
+    margin: 6px; 
+    height: 30px; 
+    width: 30px; 
+    float: left; 
+    border-radius: 2px; 
+}
+
+.description {
+    padding-top: 6px;
+    padding-left: 3px; 
+    font-weight: bold;
+}
 
 

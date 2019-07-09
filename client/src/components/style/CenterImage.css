@@ -17,15 +17,33 @@
     width: 300px;
 }
 
-.after {
+.caption {
+    display: block;
     position: absolute;
     top: -24px;
     padding-bottom: 24px;
     left: 0; 
     width: 100%;
     height: 100%;
-    display: block;
     color: #FFF;
-    font-size: 20px; 
+    font-size: 12px; 
+    font-family: 'Helvetica Neue';
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
     background: rgba(0, 0, 0, .5);
+}
+
+.none {
+    display: none;
+}
+
+.userImage {
+    margin: 4px; 
+    height: 30px; 
+    width: 30px; 
+    float: left; 
+    border-radius: 2px; 
+}
+
+.description {
+    font-weight: bold;
 }

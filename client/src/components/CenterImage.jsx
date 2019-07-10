@@ -16,7 +16,7 @@ const CenterImage = (props) => {
             <img src={props.image.URL} className={style} style={{objectFit: 'cover'}}/>
             <div className={capt}>
                 <img src={props.image.userURL ? props.image.userURL : "https://munch-gallery.s3-us-west-1.amazonaws.com/Users/default.jpg"} className={styles.userImage} />
-                <span className={styles.description}>{props.image.caption}</span> by {props.image.name}
+                <div className={styles.description}><span className={styles.bold}>{props.image.caption}</span> by {props.image.name}</div> 
             </div>
         </a>
     )

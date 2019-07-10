@@ -15,8 +15,14 @@ class App extends React.Component {
             images: [],
             current: sampleData, 
             modalIsOpen: false,
+<<<<<<< HEAD
             modal: '',
             hover: false
+=======
+            modalURL: '',
+            hover: false,
+            time: 0
+>>>>>>> 3d77a8818a0e199bfba356c048e339042d0e871a
         } 
         
         // this.getGalleryData = this.getGalleryData.bind(this);
@@ -25,20 +31,36 @@ class App extends React.Component {
         this.closeModal = this.closeModal.bind(this);
         this.hover = this.hover.bind(this);
         this.hoverOut = this.hoverOut.bind(this);
+        this.intervalScrolling = this.intervalScrolling.bind(this);
     }
 
-    // componentDidMount() {
-    //     this.getGalleryData(); 
-    // }
+    componentDidMount() {
+        this.getGalleryData(); 
+        this.intervalScrolling(); 
+    }
 
-    // getGalleryData() {
-    //     axios.get('/gallery')
-    //     .then(({data})=> this.setState({
-    //         images: data,
-    //         current: data.slice(0, 3)
-    //     }))
-    //     .catch((err)=>console.log(err))
-    // }
+    intervalScrolling() {
+        let n = 0;
+        setInterval(() => { 
+            if(!this.state.modalIsOpen && !this.state.hover){
+                this.setState({ current: this.state.images.slice(n, n+3),
+                time: this.state.time + 1});
+                n = n + 1; 
+            }
+        }, 5000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.intervalScrolling);
+      }
+
+    getGalleryData() {
+        axios.get('/gallery')
+        .then(({data})=> this.setState({
+            images: data,
+        }))
+        .catch((err)=>console.log(err))
+    }
 
     openModal(e, image) {
         e.preventDefault(); 

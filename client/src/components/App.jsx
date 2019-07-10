@@ -36,11 +36,12 @@ class App extends React.Component {
     intervalScrolling() {
         let n = 0;
         setInterval(() => { 
-            this.setState({ current: this.state.images.slice(n, n+3),
-            time: this.state.time + 1});
-            n = n + 1; 
-
-            }, 3000);
+            if(!this.state.modalIsOpen && !this.state.hover){
+                this.setState({ current: this.state.images.slice(n, n+3),
+                time: this.state.time + 1});
+                n = n + 1; 
+            }
+        }, 5000);
     }
 
     componentWillUnmount() {

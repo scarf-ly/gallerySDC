@@ -7,8 +7,8 @@
 .caption {
     display: none;
     position: absolute;
-    top: -24px;
-    padding-bottom: 24px;
+    top: -25px;
+    padding-bottom: 25px;
     left: 0; 
     width: 100%;
     height: 100%;
@@ -43,8 +43,11 @@
 }
 
 .description {
-    padding-top: 6px;
+    padding-top: 3px;
     padding-left: 3px; 
+}
+
+.bold {
     font-weight: bold;
 }
 

@@ -84,8 +84,10 @@ class App extends React.Component {
             style={customStyles}
             >
             {/* <h2 ref={subtitle => this.subtitle = subtitle} style={{float: 'right'}}>Modal Mockup</h2> */}
-            <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain'}}/>
-            <div style={{gridColumn: "2/span 1", backgroundColor: "#f5f5f5"}}>
+            <div className={styles.overlay}>
+                <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain'}}/>
+            </div>
+            <div style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
                 <div>
                     <img src={this.state.modal.userURL} className={styles.userImage}/>
                 </div>

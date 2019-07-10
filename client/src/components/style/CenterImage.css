@@ -20,8 +20,8 @@
 .caption {
     display: block;
     position: absolute;
-    top: -24px;
-    padding-bottom: 24px;
+    top: -25px;
+    padding-bottom: 25px;
     left: 0; 
     width: 100%;
     height: 100%;
@@ -37,7 +37,7 @@
 }
 
 .userImage {
-    margin: 4px; 
+    margin: 6px; 
     height: 30px; 
     width: 30px; 
     float: left; 
@@ -45,5 +45,10 @@
 }
 
 .description {
+    padding-top: 3px;
+    padding-left: 3px; 
+}
+
+.bold {
     font-weight: bold;
 }

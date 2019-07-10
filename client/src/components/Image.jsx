@@ -3,7 +3,7 @@ import styles from './style/Image.css';
 
 const Image = (props) => {
     return (
-    <a href='' onClick ={(e)=>props.onOpenClick(e, props.image.URL)} className={styles.overlay}> 
+    <a href='' onClick ={(e)=>props.onOpenClick(e, props.image)} className={styles.overlay}> 
         <img 
             onMouseOver={()=>props.onHover()}
             onMouseOut={()=>props.onHoverOut()}

@@ -43,30 +43,72 @@ class App extends React.Component {
         setInterval(() => { 
             if(!this.state.modalIsOpen && !this.state.hover){
                 let n = this.state.currStart;
-                this.setState({ 
-                current: this.state.images.slice(n, n+3),
-                currStart: this.state.currStart + 1
-            });
+                if(n+3 < this.state.images.length){
+                    this.setState({ 
+                        current: this.state.images.slice(n, n+3),
+                        currStart: n + 1
+                    });
+                }
             }
         }, 7000);
     }
 
+// ****************Continuous Scroll*************************//
+
+    // intervalScrolling() {
+    //     setInterval(() => { 
+    //         if(!this.state.modalIsOpen && !this.state.hover){
+    //             let n; 
+    //             if((this.state.currStart + 3) > this.state.images.length){
+    //                 n = 0;
+    //             } else {
+    //                 n = this.state.currStart;
+    //             };
+    //             this.setState({ 
+    //             current: this.state.images.slice(n, n+3),
+    //             currStart: n + 1
+    //         });
+    //         }
+    //     }, 7000);
+    // }
+
     clickScroll(e) {
         e.preventDefault();
         let n = this.state.currStart;
-        this.setState({ 
-            current: this.state.images.slice(n, n+3),
-            currStart: this.state.currStart + 1
-            });
-    }
+        if(n+3 < this.state.images.length){
+            this.setState({ 
+                current: this.state.images.slice(n, n+3),
+                currStart: n + 1
+                });
+            }
+        }
+
+    // ****************Continuous Scroll*************************//
+
+    // clickScroll(e) {
+    //     e.preventDefault();
+    //     let n; 
+    //     if((this.state.currStart + 3) > this.state.images.length){
+    //         n = 0;
+    //     } else {
+    //         n = this.state.currStart;
+    //     };
+    //     this.setState({ 
+    //         current: this.state.images.slice(n, n+3),
+    //         currStart: n + 1
+    //         });
+    // }
 
     backScroll(e) {
         e.preventDefault();
-        let n = this.state.currStart;
-        this.setState({ 
-            current: this.state.images.slice(n-1, n+2),
-            currStart: this.state.currStart - 1
+        let start = this.state.currStart; 
+        if(start > 0){
+            let n = this.state.currStart;
+            this.setState({ 
+                current: this.state.images.slice(n-1, n+2),
+                currStart: n - 1
             });
+        }
     }
 
     componentWillUnmount() {

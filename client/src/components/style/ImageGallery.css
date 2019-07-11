@@ -1,9 +1,22 @@
-left {
-    float: left;
-    position: absolute; 
+.left {
+    position: relative; 
+    color: rgba(245, 245, 245, .8);
+    font-size: 44px; 
+    left: 45px; 
+    z-index: 1;
+    transition: ease; 
+    cursor: pointer;
+};
+
+.left:hover {
+   color: green;
 }
 
-right { 
-    float: right; 
-    position: absolute;
+.right { 
+    position: relative; 
+    color: rgba(245, 245, 245, .8);
+    font-size: 44px; 
+    right: 45px; 
+    z-index: 1;
+    transition: ease; 
 }

@@ -17,7 +17,7 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            time: 0
+            currStart: 0,
         } 
         
         // this.getGalleryData = this.getGalleryData.bind(this);
@@ -27,22 +27,33 @@ class App extends React.Component {
         this.hover = this.hover.bind(this);
         this.hoverOut = this.hoverOut.bind(this);
         this.intervalScrolling = this.intervalScrolling.bind(this);
+        this.clickScroll = this.clickScroll.bind(this);
     }
 
     componentDidMount() {
-        this.getGalleryData(); 
-        this.intervalScrolling(); 
+        // this.getGalleryData(); 
+        // this.intervalScrolling(); 
     }
 
     intervalScrolling() {
-        let n = 0;
         setInterval(() => { 
             if(!this.state.modalIsOpen && !this.state.hover){
-                this.setState({ current: this.state.images.slice(n, n+3),
-                time: this.state.time + 1});
-                n = n + 1; 
+                let n = this.state.currStart;
+                this.setState({ 
+                current: this.state.images.slice(n, n+3),
+                currStart: this.state.currStart + 1
+            });
             }
         }, 5000);
+    }
+
+    clickScroll(e) {
+        e.preventDefault();
+        let n = this.state.currStart;
+        this.setState({ 
+            current: this.state.images.slice(n, n+3),
+            currStart: this.state.currStart + 1
+            });
     }
 
     componentWillUnmount() {
@@ -91,7 +102,7 @@ class App extends React.Component {
             images={this.state.current}
             onOpenClick={this.openModal}
             onRequestClose={this.closeModal}
-            style={customStyles} 
+            onClickScroll={this.clickScroll}
             />
 
             <Modal

@@ -129,7 +129,7 @@ class App extends React.Component {
             modalIsOpen: true,
             modal: image});
     }
-    
+
     closeModal() {
         this.setState({modalIsOpen: false});
     }
@@ -153,6 +153,7 @@ class App extends React.Component {
     render(){
         return (
         <div>
+            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
             <ImageGallery 
             onHover={this.hover}
             onHoverOut={this.hoverOut}
@@ -167,7 +168,7 @@ class App extends React.Component {
             arrows={this.state.arrows}
             modal={this.state.modal}
             />
-
+            
             <Modal
             isOpen={this.state.modalIsOpen}
             onAfterOpen={this.afterOpenModal}

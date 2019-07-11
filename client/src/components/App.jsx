@@ -35,8 +35,8 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getGalleryData(); 
-        this.intervalScrolling(); 
+        // this.getGalleryData(); 
+        // this.intervalScrolling(); 
     }
 
     intervalScrolling() {
@@ -130,11 +130,6 @@ class App extends React.Component {
             modal: image});
     }
     
-    // afterOpenModal() {
-    //     // references are now sync'd and can be accessed.
-    //     this.subtitle.style.color = 'pink';
-    // }
-    
     closeModal() {
         this.setState({modalIsOpen: false});
     }
@@ -170,6 +165,7 @@ class App extends React.Component {
             onAddArrows={this.addArrows}
             onRemoveArrows={this.removeArrows}
             arrows={this.state.arrows}
+            modal={this.state.modal}
             />
 
             <Modal
@@ -178,29 +174,35 @@ class App extends React.Component {
             onRequestClose={this.closeModal}
             style={customStyles}
             >
-            {/* <h2 ref={subtitle => this.subtitle = subtitle} style={{float: 'right'}}>Modal Mockup</h2> */}
-            <div className={styles.overlay}>
-                <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain'}}/>
-            </div>
-            <div style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
-                <div>
-                    <img src={this.state.modal.userURL} className={styles.userImage}/>
+                <div className={styles.overlay}>
+                    <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>alert('left clicked!')}>
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>alert('right clicked!')}>
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                    {/* <span className={styles.caption}><h1>I am a caption</h1></span> */}
+                    <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-55px'}}/>
                 </div>
-                <div className={styles.user}>
-                    {this.state.modal.name} 
+                <div style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
                     <div>
-                        <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
-                        <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
-                        <span className={styles.elite}>Elite '19</span>
+                        <img src={this.state.modal.userURL} className={styles.userImage}/>
                     </div>
-                    <div className={styles.comment}>{this.state.modal.caption}</div>
-                    <div className={styles.date}>August 9, 2018</div>
-                    <div className={styles.query}>Was this photo ...?</div>
-                    <button className={styles.btn}><i className="fas fa-arrow-up"></i> Helpful</button>
-                    <button className={styles.btn}><i className="fas fa-arrow-down"></i> Not Helpful</button>
-                    <div className={styles.reservations}><i className="fas fa-calendar-day"></i><span className={styles.resText}>Make a Reservation</span></div>
+                    <div className={styles.user}>
+                        {this.state.modal.name} 
+                        <div>
+                            <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
+                            <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
+                            <span className={styles.elite}>Elite '19</span>
+                        </div>
+                        <div className={styles.comment}>{this.state.modal.caption}</div>
+                        <div className={styles.date}>August 9, 2018</div>
+                        <div className={styles.query}>Was this photo ...?</div>
+                        <button className={styles.btn}><i className="fas fa-arrow-up"></i> Helpful</button>
+                        <button className={styles.btn}><i className="fas fa-arrow-down"></i> Not Helpful</button>
+                        <div className={styles.reservations}><i className="fas fa-calendar-day"></i><span className={styles.resText}>Make a Reservation</span></div>
+                    </div>
                 </div>
-            </div>
             </Modal>
         </div>
         )

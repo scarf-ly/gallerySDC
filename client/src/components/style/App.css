@@ -96,3 +96,44 @@
     margin-left: 6px;
 }
 
+.arrow{
+    z-index: 1; 
+    position: relative;
+    top: 300px;
+    float: right;
+    font-size: 48px; 
+    color: rgba(245, 245, 245, .8);
+}
+
+.left{
+    float: left; 
+    left: 10px; 
+}
+
+.right {
+    float: right; 
+    right: 10px;
+}
+
+.left:hover{
+    color: rgba(245, 245, 245, 1);
+}
+
+.right:hover{
+    color: rgba(245, 245, 245, 1)
+}
+
+.overlay:hover {
+    cursor: pointer 
+}
+
+.caption {
+    color: white;
+    position: relative;
+    background-color: red;
+    z-index: 1; 
+}
+
+
+
+

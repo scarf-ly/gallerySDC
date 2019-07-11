@@ -18,6 +18,7 @@ class App extends React.Component {
             modal: '',
             hover: false,
             currStart: 0,
+            arrows: false
         } 
         
         // this.getGalleryData = this.getGalleryData.bind(this);
@@ -28,11 +29,14 @@ class App extends React.Component {
         this.hoverOut = this.hoverOut.bind(this);
         this.intervalScrolling = this.intervalScrolling.bind(this);
         this.clickScroll = this.clickScroll.bind(this);
+        this.backScroll = this.backScroll.bind(this);
+        this.addArrows = this.addArrows.bind(this);
+        this.removeArrows = this.removeArrows.bind(this); 
     }
 
     componentDidMount() {
-        // this.getGalleryData(); 
-        // this.intervalScrolling(); 
+        this.getGalleryData(); 
+        this.intervalScrolling(); 
     }
 
     intervalScrolling() {
@@ -44,7 +48,7 @@ class App extends React.Component {
                 currStart: this.state.currStart + 1
             });
             }
-        }, 5000);
+        }, 7000);
     }
 
     clickScroll(e) {
@@ -53,6 +57,15 @@ class App extends React.Component {
         this.setState({ 
             current: this.state.images.slice(n, n+3),
             currStart: this.state.currStart + 1
+            });
+    }
+
+    backScroll(e) {
+        e.preventDefault();
+        let n = this.state.currStart;
+        this.setState({ 
+            current: this.state.images.slice(n-1, n+2),
+            currStart: this.state.currStart - 1
             });
     }
 
@@ -92,6 +105,14 @@ class App extends React.Component {
         this.setState({hover: false});
     }
 
+    addArrows() {
+        this.setState({arrows: true})
+    }
+
+    removeArrows() {
+        this.setState({arrows: false})
+    }
+
     render(){
         return (
         <div>
@@ -103,6 +124,10 @@ class App extends React.Component {
             onOpenClick={this.openModal}
             onRequestClose={this.closeModal}
             onClickScroll={this.clickScroll}
+            onBackScroll={this.backScroll}
+            onAddArrows={this.addArrows}
+            onRemoveArrows={this.removeArrows}
+            arrows={this.state.arrows}
             />
 
             <Modal

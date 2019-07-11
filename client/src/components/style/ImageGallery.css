@@ -1,16 +1,27 @@
-.left {
+
+
+
+.left {  
     position: relative; 
     color: rgba(245, 245, 245, .8);
     font-size: 44px; 
     left: 45px; 
     z-index: 1;
-    transition: ease; 
+    /* transition: ease;  */
     cursor: pointer;
-};
-
-.left:hover {
-   color: green;
 }
+
+.left2{
+    position: relative; 
+    color: rgba(245, 245, 245, 0);
+    font-size: 44px; 
+    left: 45px; 
+    z-index: 1;
+    /* transition: ease;  */
+    cursor: pointer;
+}
+
+
 
 .right { 
     position: relative; 
@@ -18,5 +29,36 @@
     font-size: 44px; 
     right: 45px; 
     z-index: 1;
+    /* transition: ease;  */
+    cursor: pointer;
+}
+
+.right2 {
+    position: relative; 
+    color: rgba(245, 245, 245, 0);
+    font-size: 44px; 
+    right: 45px; 
+    z-index: 1;
+    cursor: pointer; 
+}
+
+
+.right:hover {
+    position: relative; 
+    color: rgba(245, 245, 245, 1);
+    font-size: 44px; 
+    right: 45px; 
+    z-index: 1;
     transition: ease; 
+    cursor: pointer;
+}
+
+.left:hover {  
+    position: relative; 
+    color: rgba(245, 245, 245, 1);
+    font-size: 44px; 
+    left: 45px; 
+    z-index: 1;
+    transition: ease; 
+    cursor: pointer;
 }

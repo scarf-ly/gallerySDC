@@ -17,7 +17,8 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            time: 0
+            currStart: 0,
+            arrows: false
         } 
         
         // this.getGalleryData = this.getGalleryData.bind(this);
@@ -27,6 +28,10 @@ class App extends React.Component {
         this.hover = this.hover.bind(this);
         this.hoverOut = this.hoverOut.bind(this);
         this.intervalScrolling = this.intervalScrolling.bind(this);
+        this.clickScroll = this.clickScroll.bind(this);
+        this.backScroll = this.backScroll.bind(this);
+        this.addArrows = this.addArrows.bind(this);
+        this.removeArrows = this.removeArrows.bind(this); 
     }
 
     componentDidMount() {
@@ -35,14 +40,75 @@ class App extends React.Component {
     }
 
     intervalScrolling() {
-        let n = 0;
         setInterval(() => { 
             if(!this.state.modalIsOpen && !this.state.hover){
-                this.setState({ current: this.state.images.slice(n, n+3),
-                time: this.state.time + 1});
-                n = n + 1; 
+                let n = this.state.currStart;
+                if(n+3 < this.state.images.length){
+                    this.setState({ 
+                        current: this.state.images.slice(n, n+3),
+                        currStart: n + 1
+                    });
+                }
             }
-        }, 5000);
+        }, 7000);
+    }
+
+// ****************Continuous Scroll*************************//
+
+    // intervalScrolling() {
+    //     setInterval(() => { 
+    //         if(!this.state.modalIsOpen && !this.state.hover){
+    //             let n; 
+    //             if((this.state.currStart + 3) > this.state.images.length){
+    //                 n = 0;
+    //             } else {
+    //                 n = this.state.currStart;
+    //             };
+    //             this.setState({ 
+    //             current: this.state.images.slice(n, n+3),
+    //             currStart: n + 1
+    //         });
+    //         }
+    //     }, 7000);
+    // }
+
+    clickScroll(e) {
+        e.preventDefault();
+        let n = this.state.currStart;
+        if(n+3 < this.state.images.length){
+            this.setState({ 
+                current: this.state.images.slice(n, n+3),
+                currStart: n + 1
+                });
+            }
+        }
+
+    // ****************Continuous Scroll*************************//
+
+    // clickScroll(e) {
+    //     e.preventDefault();
+    //     let n; 
+    //     if((this.state.currStart + 3) > this.state.images.length){
+    //         n = 0;
+    //     } else {
+    //         n = this.state.currStart;
+    //     };
+    //     this.setState({ 
+    //         current: this.state.images.slice(n, n+3),
+    //         currStart: n + 1
+    //         });
+    // }
+
+    backScroll(e) {
+        e.preventDefault();
+        let start = this.state.currStart; 
+        if(start > 0){
+            let n = this.state.currStart;
+            this.setState({ 
+                current: this.state.images.slice(n-1, n+2),
+                currStart: n - 1
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -81,6 +147,14 @@ class App extends React.Component {
         this.setState({hover: false});
     }
 
+    addArrows() {
+        this.setState({arrows: true})
+    }
+
+    removeArrows() {
+        this.setState({arrows: false})
+    }
+
     render(){
         return (
         <div>
@@ -91,7 +165,11 @@ class App extends React.Component {
             images={this.state.current}
             onOpenClick={this.openModal}
             onRequestClose={this.closeModal}
-            style={customStyles} 
+            onClickScroll={this.clickScroll}
+            onBackScroll={this.backScroll}
+            onAddArrows={this.addArrows}
+            onRemoveArrows={this.removeArrows}
+            arrows={this.state.arrows}
             />
 
             <Modal

@@ -120,7 +120,7 @@ class App extends React.Component {
 
     getGalleryData() {
         axios.get('/gallery')
-        .then(({data})=> this.addIndex(data))
+        .then(({data}) => this.addIndex(data))
         .catch((err)=>console.log(err))
     }
 

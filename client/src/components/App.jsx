@@ -17,11 +17,12 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            currStart: 0,
+            currStart: 2,
             arrows: false
         } 
         
-        // this.getGalleryData = this.getGalleryData.bind(this);
+        this.getGalleryData = this.getGalleryData.bind(this);
+        this.addIndex = this.addIndex.bind(this);
         this.openModal = this.openModal.bind(this);
         // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -32,6 +33,8 @@ class App extends React.Component {
         this.backScroll = this.backScroll.bind(this);
         this.addArrows = this.addArrows.bind(this);
         this.removeArrows = this.removeArrows.bind(this); 
+        this.modalRight = this.modalRight.bind(this);
+        this.modalLeft = this.modalLeft.bind(this);
     }
 
     componentDidMount() {
@@ -50,7 +53,7 @@ class App extends React.Component {
                     });
                 }
             }
-        }, 7000);
+        }, 4000);
     }
 
 // ****************Continuous Scroll*************************//
@@ -117,10 +120,18 @@ class App extends React.Component {
 
     getGalleryData() {
         axios.get('/gallery')
-        .then(({data})=> this.setState({
-            images: data,
-        }))
+        .then(({data}) => this.addIndex(data))
         .catch((err)=>console.log(err))
+    }
+
+    addIndex(arr) {
+        let result = [];
+        for(let i = 0; i < arr.length; i++) {
+            result.push(Object.assign(arr[i], {idx: i}));
+        };
+        this.setState({
+            current: result.slice(0, 3),
+            images: result})
     }
 
     openModal(e, image) {
@@ -129,12 +140,7 @@ class App extends React.Component {
             modalIsOpen: true,
             modal: image});
     }
-    
-    // afterOpenModal() {
-    //     // references are now sync'd and can be accessed.
-    //     this.subtitle.style.color = 'pink';
-    // }
-    
+
     closeModal() {
         this.setState({modalIsOpen: false});
     }
@@ -155,9 +161,26 @@ class App extends React.Component {
         this.setState({arrows: false})
     }
 
+    modalRight() {
+        if (this.state.modal.idx < this.state.images.length - 1) {
+            let nextIdx = this.state.modal.idx + 1; 
+            let nextModal = this.state.images.filter(image => image.idx === nextIdx);
+            this.setState({modal: nextModal[0]});
+        }
+    }
+
+    modalLeft() {
+        if (this.state.modal.idx > 0) {
+            let prevIdx = this.state.modal.idx - 1; 
+            let prevModal = this.state.images.filter(image => image.idx === prevIdx); 
+            this.setState({modal: prevModal[0]}); 
+        }
+    }
+
     render(){
         return (
         <div>
+            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
             <ImageGallery 
             onHover={this.hover}
             onHoverOut={this.hoverOut}
@@ -170,38 +193,46 @@ class App extends React.Component {
             onAddArrows={this.addArrows}
             onRemoveArrows={this.removeArrows}
             arrows={this.state.arrows}
+            modal={this.state.modalIsOpen}
             />
-
-            <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            >
-            {/* <h2 ref={subtitle => this.subtitle = subtitle} style={{float: 'right'}}>Modal Mockup</h2> */}
-            <div className={styles.overlay}>
-                <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain'}}/>
-            </div>
-            <div style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
-                <div>
-                    <img src={this.state.modal.userURL} className={styles.userImage}/>
-                </div>
-                <div className={styles.user}>
-                    {this.state.modal.name} 
-                    <div>
-                        <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
-                        <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
-                        <span className={styles.elite}>Elite '19</span>
+            
+            <div className={styles.modal}>
+                <Modal
+                isOpen={this.state.modalIsOpen}
+                onAfterOpen={this.afterOpenModal}
+                onRequestClose={this.closeModal}
+                style={customStyles}
+                >
+                    <div className={styles.overlay}>
+                        <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>this.modalLeft()}>
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                        <img src={this.state.modal.URL} height="630px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-60px'}}/>
                     </div>
-                    <div className={styles.comment}>{this.state.modal.caption}</div>
-                    <div className={styles.date}>August 9, 2018</div>
-                    <div className={styles.query}>Was this photo ...?</div>
-                    <button className={styles.btn}><i className="fas fa-arrow-up"></i> Helpful</button>
-                    <button className={styles.btn}><i className="fas fa-arrow-down"></i> Not Helpful</button>
-                    <div className={styles.reservations}><i className="fas fa-calendar-day"></i><span className={styles.resText}>Make a Reservation</span></div>
-                </div>
+                    <div className={styles.info} style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
+                        <div>
+                            <img src={this.state.modal.userURL} className={styles.userImage}/>
+                        </div>
+                        <div className={styles.user}>
+                            {this.state.modal.name} 
+                            <div>
+                                <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
+                                <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
+                                <span className={styles.elite}>Elite '19</span>
+                            </div>
+                            <div className={styles.comment}>{this.state.modal.caption}</div>
+                            <div className={styles.date}>August 9, 2018</div>
+                            <div className={styles.query}>Was this photo ...?</div>
+                            <button className={styles.btn}><i className="fas fa-arrow-up"></i> Helpful</button>
+                            <button className={styles.btn}><i className="fas fa-arrow-down"></i> Not Helpful</button>
+                            <div className={styles.reservations}><i className="fas fa-calendar-day"></i><span className={styles.resText}>Make a Reservation</span></div>
+                        </div>
+                    </div>
+                </Modal>
             </div>
-            </Modal>
         </div>
         )
     }

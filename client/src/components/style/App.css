@@ -1,3 +1,36 @@
+
+/*********** modal max size ***********/
+.modal {
+    height: 625px;
+    width: 1200px;
+}
+
+/*********** modal image ***********/
+
+.overlay {
+    grid-column:  1 / span 1;
+    max-width: 900px; 
+    height: auto; 
+}
+
+.overlay:hover {
+    cursor: pointer 
+}
+
+/* .image {
+    position: relative;
+    top: 55px; 
+    width: 900px;
+    height: 625px;
+    object-fit: contain; 
+} */
+
+
+/* height="625px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-55px'}} */
+
+
+/*********** user info ***********/
+
 .user { 
     padding: 12px 12px 0;
     font-size: 14px;
@@ -48,6 +81,8 @@
     padding-top: 6px;
 }
 
+/********** helpful query ***********/
+
 .query {
     color: #666666; 
     font-size: 12px;
@@ -74,6 +109,8 @@
     background: rgb(245, 245, 245)
 }
 
+/*********** reservations ***********/
+
 .reservations {
     color:  #0073bb;
     font-size: 14px;
@@ -81,11 +118,11 @@
     font-weight: normal;
 }
 
-.resText{
+.resText {
     padding-left: 10px;
 }
 
-.resText:hover{
+.resText:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -96,3 +133,63 @@
     margin-left: 6px;
 }
 
+/*********** modal arrows ***********/
+
+.arrow {
+    z-index: 1; 
+    position: relative;
+    top: 290px;
+    float: right;
+    font-size: 48px; 
+    color: rgba(245, 245, 245, .8);
+}
+
+.left{
+    float: left; 
+    left: 10px; 
+}
+
+.right {
+    float: right; 
+    right: 10px;
+}
+
+.left:hover{
+    color: rgba(245, 245, 245, 1);
+}
+
+.right:hover{
+    color: rgba(245, 245, 245, 1)
+}
+
+/*********** close btn ***********/
+
+.close {
+    position: relative;
+    z-index: 1; 
+    float: right; 
+    margin-right: 40px; 
+    margin-top: 0px; 
+    font-size: 14px;
+    line-height: 1.28571em;
+    color: #999;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.8); 
+    text-decoration: none;
+    text-align: right;
+    font-weight: bold;
+    font-family: 'Helvetica Neue';
+    
+}
+
+.close:hover {
+    color: whitesmoke; 
+    cursor: pointer; 
+}
+
+
+/* .caption {
+    color: white;
+    position: relative;
+    background-color: red;
+    z-index: 1; 
+} */

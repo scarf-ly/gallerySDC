@@ -1,3 +1,36 @@
+
+/*********** modal max size ***********/
+.modal {
+    height: 625px;
+    width: 1200px;
+}
+
+/*********** modal image ***********/
+
+.overlay {
+    grid-column:  1 / span 1;
+    max-width: 900px; 
+    height: auto; 
+}
+
+.overlay:hover {
+    cursor: pointer 
+}
+
+/* .image {
+    position: relative;
+    top: 55px; 
+    width: 900px;
+    height: 625px;
+    object-fit: contain; 
+} */
+
+
+/* height="625px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-55px'}} */
+
+
+/*********** user info ***********/
+
 .user { 
     padding: 12px 12px 0;
     font-size: 14px;
@@ -48,6 +81,8 @@
     padding-top: 6px;
 }
 
+/********** helpful query ***********/
+
 .query {
     color: #666666; 
     font-size: 12px;
@@ -74,6 +109,8 @@
     background: rgb(245, 245, 245)
 }
 
+/*********** reservations ***********/
+
 .reservations {
     color:  #0073bb;
     font-size: 14px;
@@ -81,11 +118,11 @@
     font-weight: normal;
 }
 
-.resText{
+.resText {
     padding-left: 10px;
 }
 
-.resText:hover{
+.resText:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -96,7 +133,9 @@
     margin-left: 6px;
 }
 
-.arrow{
+/*********** modal arrows ***********/
+
+.arrow {
     z-index: 1; 
     position: relative;
     top: 290px;
@@ -123,16 +162,7 @@
     color: rgba(245, 245, 245, 1)
 }
 
-.overlay:hover {
-    cursor: pointer 
-}
-
-.caption {
-    color: white;
-    position: relative;
-    background-color: red;
-    z-index: 1; 
-}
+/*********** close btn ***********/
 
 .close {
     position: relative;
@@ -157,4 +187,9 @@
 }
 
 
-
+/* .caption {
+    color: white;
+    position: relative;
+    background-color: red;
+    z-index: 1; 
+} */

@@ -162,15 +162,19 @@ class App extends React.Component {
     }
 
     modalRight() {
-        let nextIdx = this.state.modal.idx + 1; 
-        let nextModal = this.state.images.filter(image => image.idx === nextIdx);
-        this.setState({modal: nextModal[0]});
+        if (this.state.modal.idx < this.state.images.length - 1) {
+            let nextIdx = this.state.modal.idx + 1; 
+            let nextModal = this.state.images.filter(image => image.idx === nextIdx);
+            this.setState({modal: nextModal[0]});
+        }
     }
 
     modalLeft() {
-        let prevIdx = this.state.modal.idx - 1; 
-        let prevModal = this.state.images.filter(image => image.idx === prevIdx); 
-        this.setState({modal: prevModal[0]}); 
+        if (this.state.modal.idx > 0) {
+            let prevIdx = this.state.modal.idx - 1; 
+            let prevModal = this.state.images.filter(image => image.idx === prevIdx); 
+            this.setState({modal: prevModal[0]}); 
+        }
     }
 
     render(){
@@ -189,44 +193,46 @@ class App extends React.Component {
             onAddArrows={this.addArrows}
             onRemoveArrows={this.removeArrows}
             arrows={this.state.arrows}
-            modal={this.state.modal}
+            modal={this.state.modalIsOpen}
             />
             
-            <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            >
-                <div className={styles.overlay}>
-                    <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>this.modalLeft()}>
-                        <i class="fas fa-chevron-left"></i>
-                    </span>
-                    <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
-                        <i class="fas fa-chevron-right"></i>
-                    </span>
-                    <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-55px'}}/>
-                </div>
-                <div style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
-                    <div>
-                        <img src={this.state.modal.userURL} className={styles.userImage}/>
+            <div className={styles.modal}>
+                <Modal
+                isOpen={this.state.modalIsOpen}
+                onAfterOpen={this.afterOpenModal}
+                onRequestClose={this.closeModal}
+                style={customStyles}
+                >
+                    <div className={styles.overlay}>
+                        <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>this.modalLeft()}>
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                        <img src={this.state.modal.URL} height="630px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-60px'}}/>
                     </div>
-                    <div className={styles.user}>
-                        {this.state.modal.name} 
+                    <div className={styles.info} style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
                         <div>
-                            <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
-                            <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
-                            <span className={styles.elite}>Elite '19</span>
+                            <img src={this.state.modal.userURL} className={styles.userImage}/>
                         </div>
-                        <div className={styles.comment}>{this.state.modal.caption}</div>
-                        <div className={styles.date}>August 9, 2018</div>
-                        <div className={styles.query}>Was this photo ...?</div>
-                        <button className={styles.btn}><i className="fas fa-arrow-up"></i> Helpful</button>
-                        <button className={styles.btn}><i className="fas fa-arrow-down"></i> Not Helpful</button>
-                        <div className={styles.reservations}><i className="fas fa-calendar-day"></i><span className={styles.resText}>Make a Reservation</span></div>
+                        <div className={styles.user}>
+                            {this.state.modal.name} 
+                            <div>
+                                <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
+                                <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
+                                <span className={styles.elite}>Elite '19</span>
+                            </div>
+                            <div className={styles.comment}>{this.state.modal.caption}</div>
+                            <div className={styles.date}>August 9, 2018</div>
+                            <div className={styles.query}>Was this photo ...?</div>
+                            <button className={styles.btn}><i className="fas fa-arrow-up"></i> Helpful</button>
+                            <button className={styles.btn}><i className="fas fa-arrow-down"></i> Not Helpful</button>
+                            <div className={styles.reservations}><i className="fas fa-calendar-day"></i><span className={styles.resText}>Make a Reservation</span></div>
+                        </div>
                     </div>
-                </div>
-            </Modal>
+                </Modal>
+            </div>
         </div>
         )
     }

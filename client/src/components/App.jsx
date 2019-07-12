@@ -6,7 +6,7 @@ import customStyles from './style/modalStyle.js';
 import ImageGallery from '/Users/TinaLe/Documents/gallery/client/src/components/ImageGallery.jsx';
 import styles from './style/App.css'
 
-Modal.setAppElement('#app')
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app')
 
 class App extends React.Component {
     constructor(props){
@@ -135,7 +135,9 @@ class App extends React.Component {
     }
 
     openModal(e, image) {
-        e.preventDefault(); 
+        if(e) {
+            e.preventDefault(); 
+        }
         this.setState({
             modalIsOpen: true,
             modal: image});
@@ -180,7 +182,7 @@ class App extends React.Component {
     render(){
         return (
         <div>
-            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
+            {this.state.modalIsOpen && <p className = {styles.close} onClick={() => this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
             <ImageGallery 
             onHover={this.hover}
             onHoverOut={this.hoverOut}
@@ -204,10 +206,10 @@ class App extends React.Component {
                 style={customStyles}
                 >
                     <div className={styles.overlay}>
-                        <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>this.modalLeft()}>
+                        <span className={[styles.left, styles.arrow].join(' ')} onClick={() => this.modalLeft()}>
                             <i class="fas fa-chevron-left"></i>
                         </span>
-                        <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
+                        <span className={[styles.right, styles.arrow].join(' ')} onClick={() => this.modalRight()}>
                             <i class="fas fa-chevron-right"></i>
                         </span>
                         <img src={this.state.modal.URL} height="640px" width="900px" style={{objectFit: 'contain', position: 'relative', verticalAlign:'center', top: '-55px'}}/>

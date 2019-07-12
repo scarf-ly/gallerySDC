@@ -210,7 +210,7 @@ class App extends React.Component {
                         <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
                             <i class="fas fa-chevron-right"></i>
                         </span>
-                        <img src={this.state.modal.URL} height="630px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-60px'}}/>
+                        <img src={this.state.modal.URL} height="640px" width="900px" style={{objectFit: 'contain', position: 'relative', verticalAlign:'center', top: '-55px'}}/>
                     </div>
                     <div className={styles.info} style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
                         <div>
@@ -221,6 +221,14 @@ class App extends React.Component {
                             <div>
                                 <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>8</span>
                                 <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>10</span>
+                                {/* <span>
+                                    <svg height="18" viewBox="0 0 18 18" width="18" className={styles.star}>
+                                        <g color="orange">
+                                            <path d="M13 3H5c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-1.505 9.643l-2.526-1.55L6.526 12.7 7 9.934 5 7.977l2.766-.404L8.97 4.7l1.264 2.873L13 7.977l-2 1.957.495 2.71z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span><span className={styles.num}>10</span> */}
                                 <span className={styles.elite}>Elite '19</span>
                             </div>
                             <div className={styles.comment}>{this.state.modal.caption}</div>

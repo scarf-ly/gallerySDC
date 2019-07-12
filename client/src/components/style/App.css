@@ -1,7 +1,7 @@
 
 /*********** modal max size ***********/
 .modal {
-    height: 625px;
+    height: 620px;
     width: 1200px;
 }
 
@@ -25,10 +25,6 @@
     object-fit: contain; 
 } */
 
-
-/* height="625px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-55px'}} */
-
-
 /*********** user info ***********/
 
 .user { 
@@ -51,11 +47,12 @@
 
 .friend {
     font-size: 12px;
-    color: #f15c00
+    color: #f15c00;
+    fill: #f15c00;
 }
 
 .star {
-    font-size: 12px;
+    fill: #f15c00;
     color: #f15c00;
     padding-left: 6px;
 }

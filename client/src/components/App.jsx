@@ -17,11 +17,12 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            currStart: 0,
+            currStart: 2,
             arrows: false
         } 
         
-        // this.getGalleryData = this.getGalleryData.bind(this);
+        this.getGalleryData = this.getGalleryData.bind(this);
+        this.addIndex = this.addIndex.bind(this);
         this.openModal = this.openModal.bind(this);
         // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -32,11 +33,13 @@ class App extends React.Component {
         this.backScroll = this.backScroll.bind(this);
         this.addArrows = this.addArrows.bind(this);
         this.removeArrows = this.removeArrows.bind(this); 
+        this.modalRight = this.modalRight.bind(this);
+        this.modalLeft = this.modalLeft.bind(this);
     }
 
     componentDidMount() {
-        // this.getGalleryData(); 
-        // this.intervalScrolling(); 
+        this.getGalleryData(); 
+        this.intervalScrolling(); 
     }
 
     intervalScrolling() {
@@ -50,7 +53,7 @@ class App extends React.Component {
                     });
                 }
             }
-        }, 7000);
+        }, 4000);
     }
 
 // ****************Continuous Scroll*************************//
@@ -117,10 +120,18 @@ class App extends React.Component {
 
     getGalleryData() {
         axios.get('/gallery')
-        .then(({data})=> this.setState({
-            images: data,
-        }))
+        .then(({data})=> this.addIndex(data))
         .catch((err)=>console.log(err))
+    }
+
+    addIndex(arr) {
+        let result = [];
+        for(let i = 0; i < arr.length; i++) {
+            result.push(Object.assign(arr[i], {idx: i}));
+        };
+        this.setState({
+            current: result.slice(0, 3),
+            images: result})
     }
 
     openModal(e, image) {
@@ -150,6 +161,18 @@ class App extends React.Component {
         this.setState({arrows: false})
     }
 
+    modalRight() {
+        let nextIdx = this.state.modal.idx + 1; 
+        let nextModal = this.state.images.filter(image => image.idx === nextIdx);
+        this.setState({modal: nextModal[0]});
+    }
+
+    modalLeft() {
+        let prevIdx = this.state.modal.idx - 1; 
+        let prevModal = this.state.images.filter(image => image.idx === prevIdx); 
+        this.setState({modal: prevModal[0]}); 
+    }
+
     render(){
         return (
         <div>
@@ -176,13 +199,12 @@ class App extends React.Component {
             style={customStyles}
             >
                 <div className={styles.overlay}>
-                    <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>alert('left clicked!')}>
+                    <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>this.modalLeft()}>
                         <i class="fas fa-chevron-left"></i>
                     </span>
-                    <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>alert('right clicked!')}>
+                    <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
                         <i class="fas fa-chevron-right"></i>
                     </span>
-                    {/* <span className={styles.caption}><h1>I am a caption</h1></span> */}
                     <img src={this.state.modal.URL} height="625px" width="900px" style={{objectFit: 'contain', position: 'relative', top: '-55px'}}/>
                 </div>
                 <div style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>

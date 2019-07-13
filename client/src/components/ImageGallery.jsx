@@ -6,7 +6,7 @@ import styles from './style/ImageGallery.css';
 
 const ImageGallery = (props) => (
     //**********for layout purposes, this div can be used to position the gallery*********
-    <div onMouseOver={()=>props.onAddArrows()} onMouseOut={()=>props.onRemoveArrows()}>
+    <div className={styles.gallery} onMouseOver={()=>props.onAddArrows()} onMouseOut={()=>props.onRemoveArrows()}>
         {/* This code code prevents the gallery from repositioning with the arrows */}
         {props.arrows && !props.modal && <span className={styles.left}><i className="fas fa-chevron-left" onClick={(e)=>props.onBackScroll(e)}></i></span>}
         {!props.arrows && <span className={styles.left2}><i className="fas fa-chevron-left"></i></span>}

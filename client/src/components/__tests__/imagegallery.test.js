@@ -31,7 +31,7 @@ describe('ImageGallery', () => {
 
     it('should add arrows on mouse over', () => {
         const clickFn = jest.fn();
-        const wrapper = mount(<ImageGallery images={['img1', 'img2', 'img3']}/>);
+        const wrapper = shallow(<ImageGallery images={['img1', 'img2', 'img3']}/>);
         wrapper.setProps({
           onAddArrows: clickFn,
         });
@@ -39,16 +39,36 @@ describe('ImageGallery', () => {
         expect(clickFn).toHaveBeenCalled();
       });
     
-    it ('should remove arrows on mouse out', () => {
-        const clickFn = jest.fn();
-        const wrapper = mount(<ImageGallery images={['img1', 'img2', 'img3']}/>);
+    it('should remove arrows on mouse out', () => {
+        const mouseOut = jest.fn();
+        const wrapper = shallow(<ImageGallery images={['img1', 'img2', 'img3']}/>);
         wrapper.setProps({
-          onRemoveArrows: clickFn,
+          onRemoveArrows: mouseOut,
         });
         wrapper.find('.gallery').simulate('mouseout');
-        expect(clickFn).toHaveBeenCalled();
-
+        expect(mouseOut).toHaveBeenCalled();
     });
+
+    it('should fire off scrolling when right arrow is clicked', () => {
+        const wrapper = shallow(<ImageGallery images={['img1', 'img2', 'img3']} arrows={true} modal={false}/>);
+        const clickfn = jest.fn(); 
+        wrapper.setProps({
+            onClickScroll: clickfn,
+        })
+        wrapper.find('.fa-chevron-right').simulate('click');
+        expect(clickfn).toHaveBeenCalled();
+    });
+
+    it('should fire off scrolling when right arrow is clicked', () => {
+        const wrapper = shallow(<ImageGallery images={['img1', 'img2', 'img3']} arrows={true} modal={false}/>);
+        const clickfn = jest.fn(); 
+        wrapper.setProps({
+            onBackScroll: clickfn,
+        })
+        wrapper.find('.fa-chevron-left').simulate('click');
+        expect(clickfn).toHaveBeenCalled();
+    });
+
 
 });
 

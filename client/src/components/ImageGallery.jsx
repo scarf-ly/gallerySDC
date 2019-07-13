@@ -8,7 +8,7 @@ const ImageGallery = (props) => (
     //**********for layout purposes, this div can be used to position the gallery*********
     <div className={styles.gallery} onMouseOver={()=>props.onAddArrows()} onMouseOut={()=>props.onRemoveArrows()}>
         {/* This code code prevents the gallery from repositioning with the arrows */}
-        {props.arrows && !props.modal && <span className={styles.left}><i className="fas fa-chevron-left" onClick={(e)=>props.onBackScroll(e)}></i></span>}
+        {props.arrows && !props.modal && <span className={styles.left}><i className="fas fa-chevron-left" onClick={()=>props.onBackScroll()}></i></span>}
         {!props.arrows && <span className={styles.left2}><i className="fas fa-chevron-left"></i></span>}
         <Image image ={props.images[0]} onOpenClick = {props.onOpenClick} onHover={props.onHover} onHoverOut={props.onHoverOut}/>
         <CenterImage image={props.images[1]} onOpenClick = {props.onOpenClick} hover={props.hover}/>

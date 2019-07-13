@@ -101,8 +101,8 @@ class App extends React.Component {
     //         });
     // }
 
-    backScroll(e) {
-        e.preventDefault();
+    backScroll() {
+        // e.preventDefault();
         let start = this.state.currStart; 
         if(start > 0){
             let n = this.state.currStart;

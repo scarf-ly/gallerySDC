@@ -86,4 +86,38 @@ describe('App', ()=>{
             })
     });
 
+    it('should have a close button only when modal is open', () => {
+        expect(wrapper.state('modalIsOpen')).toBe(false); 
+        expect(wrapper.find('.close')).toHaveLength(0);
+        instance.openModal(null, 'sampleImgURL.jpg'); 
+        expect(wrapper.state('modalIsOpen')).toBe(true);
+        expect(wrapper.find('.close')).toHaveLength(1);
+    });
+
+    it('should close modal on close button click', () => {
+        wrapper.instance().closeModal = jest.fn();
+        wrapper.update();
+        instance.openModal(null, 'sampleImgURL.jpg');
+        wrapper.find('.close').simulate('click'); 
+        expect(wrapper.instance().closeModal).toHaveBeenCalled();
+    });
+
+    it('should fire off modal left method when left arrow is clicked', () => {
+        wrapper.instance().modalLeft = jest.fn();
+        wrapper.update();
+        instance.openModal(null, 'sampleImgURL.jpg'); 
+        expect(wrapper.find('.left')).toHaveLength(1);
+        wrapper.find('.left').simulate('click');
+        expect(wrapper.instance().modalLeft).toHaveBeenCalled();
+    });
+
+    it('should fire off modal right method when right arrow is clicked', () => {
+        wrapper.instance().modalRight = jest.fn();
+        wrapper.update();
+        instance.openModal(null, 'sampleImgURL.jpg'); 
+        expect(wrapper.find('.right')).toHaveLength(1);
+        wrapper.find('.right').simulate('click');
+        expect(wrapper.instance().modalRight).toHaveBeenCalled();
+    });
+
 });

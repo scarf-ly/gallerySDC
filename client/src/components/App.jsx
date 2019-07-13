@@ -17,7 +17,7 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            currStart: 2,
+            currStart: 0,
             arrows: false
         } 
         
@@ -74,10 +74,9 @@ class App extends React.Component {
     //     }, 7000);
     // }
 
-    clickScroll(e) {
-        e.preventDefault();
+    clickScroll() {
         let n = this.state.currStart;
-        if(n+3 < this.state.images.length){
+        if(n + 3 < this.state.images.length){
             this.setState({ 
                 current: this.state.images.slice(n, n+3),
                 currStart: n + 1
@@ -130,7 +129,8 @@ class App extends React.Component {
         };
         this.setState({
             current: result.slice(0, 3),
-            images: result})
+            images: result
+        });
     }
 
     openModal(e, image) {

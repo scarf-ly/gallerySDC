@@ -5,7 +5,8 @@ let sampleData = [
         id: 26,
         name: 'Bertha Sporer',
         userID: 1,
-        userURL: null
+        userURL: null,
+        idx: 0
     },
 
     {
@@ -14,7 +15,8 @@ let sampleData = [
         id: 36,
         name: 'Estelle Sipes',
         userID: 40,
-        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users20.jpg' 
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users20.jpg', 
+        idx: 1
     }, 
 
     {
@@ -23,8 +25,22 @@ let sampleData = [
         id: 47,
         name: 'Giovani Green',
         userID: 35,
-        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users15.jpg'
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users15.jpg',
+        idx: 2
+    },
+
+    {
+        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/munch42.jpg',
+        caption: 'eveniet non nihil',
+        id: 47,
+        name: 'Tom F.',
+        userID: 35,
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users12.jpg',
+        idx: 3
     }
+
+
+
 ]
 
 export default sampleData;

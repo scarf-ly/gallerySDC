@@ -1,27 +1,29 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16'; 
-import App from '/Users/TinaLe/Documents/gallery/client/src/components/App.jsx'
+import App from '/Users/TinaLe/Documents/gallery/client/src/components/App.jsx';
+import sampleData from '/Users/TinaLe/Documents/gallery/client/src/data/sampleData.js';
+
+
 
 Enzyme.configure({ adapter: new Adapter() }); 
 
-  
-describe('App', ()=>{
-    let wrapper;
-    let instance;
+let wrapper;
+let instance;
 
-    beforeEach(() => {
+beforeEach(() => {
     wrapper = shallow(<App />, {disableLifecycleMethods: true});
     instance = wrapper.instance();
-    }); 
+}); 
+  
+describe('App', () => {
 
     it('should have state', () =>{
         expect(wrapper.state()).toExist;
-
     });
 
     it('should have three starter items in its current state', () => {
-        expect(wrapper.state('current')).toHaveLength(3);
+        expect(wrapper.state('current')).toHaveLength(4);
     });
 
     it('should have a hover method that toggles hover state to true', () => {
@@ -54,37 +56,6 @@ describe('App', ()=>{
         expect(wrapper.state('arrows')).toBe(false); 
     });
 
-    it('should have modal arrows that shift image left and right', () => {
-        wrapper.setState({
-            modal: {
-                URL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch1.jpg",
-                caption: "cap1",
-                idx: 0,
-                name: "name1",
-                userURL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users9.jpg"
-            },
-            images: [{
-                URL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch2.jpg",
-                caption: "nemo maiores possimus",
-                idx: 1,
-                name: "name2",
-                userURL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users9.jpg",
-            }, 
-            { 
-                URL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch1.jpg",
-                caption: "nemo maiores possimus",
-                idx: 0,
-                name: "Lempi Hartmann",
-                userURL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users9.jpg"
-            }
-            ]}, () =>{
-                instance.modalRight(); 
-                expect(instance.state.modal.idx).toEqual(1);
-                instance.modalLeft();
-                expect(instance.state.modal.idx).toEqual(0); 
-            })
-    });
-
     it('should have a close button only when modal is open', () => {
         expect(wrapper.state('modalIsOpen')).toBe(false); 
         expect(wrapper.find('.close')).toHaveLength(0);
@@ -101,10 +72,41 @@ describe('App', ()=>{
         expect(wrapper.instance().closeModal).toHaveBeenCalled();
     });
 
+    it('should have methods that scroll left and right', () => {
+        wrapper.setState({
+            modal: sampleData[0],
+            images: sampleData
+        }, () => {
+            expect(wrapper.state('currStart')).toEqual(0); 
+            instance.clickScroll(); 
+            expect(wrapper.state('currStart')).toEqual(1);
+            instance.backScroll(); 
+            expect(wrapper.state('currStart')).toEqual(0);
+        });
+    });
+});
+
+describe('Modal', () => {
+
+    beforeEach(() => {
+        instance.openModal(null, 'sampleImgURL.jpg');
+    }); 
+    
+    it('should have an image element', () => {
+        expect(wrapper.exists('img')).toEqual(true);
+    });
+
+    it('should have an info panel with user information', () => {
+        expect(wrapper.exists('.info')).toEqual(true);
+        expect(wrapper.exists('.user')).toEqual(true);
+        expect(wrapper.exists('.friend')).toEqual(true);
+        expect(wrapper.exists('.star')).toEqual(true);
+
+    })
+
     it('should fire off modal left method when left arrow is clicked', () => {
         wrapper.instance().modalLeft = jest.fn();
         wrapper.update();
-        instance.openModal(null, 'sampleImgURL.jpg'); 
         expect(wrapper.find('.left')).toHaveLength(1);
         wrapper.find('.left').simulate('click');
         expect(wrapper.instance().modalLeft).toHaveBeenCalled();
@@ -113,10 +115,21 @@ describe('App', ()=>{
     it('should fire off modal right method when right arrow is clicked', () => {
         wrapper.instance().modalRight = jest.fn();
         wrapper.update();
-        instance.openModal(null, 'sampleImgURL.jpg'); 
         expect(wrapper.find('.right')).toHaveLength(1);
         wrapper.find('.right').simulate('click');
         expect(wrapper.instance().modalRight).toHaveBeenCalled();
+    });
+
+    it('should have modal arrows that shift image left and right', () => {
+        wrapper.setState({
+            modal: sampleData[0],
+            images: sampleData
+        }, () => {
+                instance.modalRight(); 
+                expect(instance.state.modal.idx).toEqual(1);
+                instance.modalLeft();
+                expect(instance.state.modal.idx).toEqual(0); 
+        })
     });
 
 });

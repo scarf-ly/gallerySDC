@@ -12,10 +12,15 @@ const CenterImage = (props) => {
         capt = styles.caption;
     }
     return (
-        <a href='' onClick ={(e)=>props.onOpenClick(e, props.image)} className={styles.overlay}>
-            <img src={props.image.URL} className={style} style={{objectFit: 'cover'}}/>
+        <a href='' className={styles.overlay}>
+            <img 
+            onClick ={(e)=>props.onOpenClick(e, props.image)}
+            src={props.image.URL} 
+            className={style} 
+            style={{objectFit: 'cover'}}
+            />
             <div className={capt}>
-                <img src={props.image.userURL ? props.image.userURL : "https://munch-gallery.s3-us-west-1.amazonaws.com/Users/default.jpg"} className={styles.userImage} />
+                <img src={props.image.userURL} className={styles.userImage} />
                 <div className={styles.description}><span className={styles.bold}>{props.image.caption}</span> by {props.image.name}</div> 
             </div>
         </a>

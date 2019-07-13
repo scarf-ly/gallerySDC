@@ -16,7 +16,6 @@ describe('Image', () => {
             name: "name2",
             userURL:"https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users9.jpg",
         }} />, {disableLifecycleMethods: true});
-        expect(wrapper.exists('img')).toEqual(true);
     }); 
 
     it('should have an image element', () => {

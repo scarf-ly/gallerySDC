@@ -24,7 +24,6 @@ class App extends React.Component {
         this.getGalleryData = this.getGalleryData.bind(this);
         this.addIndex = this.addIndex.bind(this);
         this.openModal = this.openModal.bind(this);
-        // this.afterOpenModal = this.afterOpenModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.hover = this.hover.bind(this);
         this.hoverOut = this.hoverOut.bind(this);

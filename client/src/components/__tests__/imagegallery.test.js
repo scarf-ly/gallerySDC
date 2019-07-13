@@ -30,13 +30,13 @@ describe('ImageGallery', () => {
     });
 
     it('should add arrows on mouse over', () => {
-        const clickFn = jest.fn();
+        const mouseover = jest.fn();
         const wrapper = shallow(<ImageGallery images={['img1', 'img2', 'img3']}/>);
         wrapper.setProps({
-          onAddArrows: clickFn,
+          onAddArrows: mouseover,
         });
         wrapper.find('.gallery').simulate('mouseover');
-        expect(clickFn).toHaveBeenCalled();
+        expect(mouseover).toHaveBeenCalled();
       });
     
     it('should remove arrows on mouse out', () => {

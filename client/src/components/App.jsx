@@ -22,7 +22,7 @@ class App extends React.Component {
         } 
         
         this.getGalleryData = this.getGalleryData.bind(this);
-        this.addIndex = this.addIndex.bind(this);
+        this.prepareData = this.prepareData.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.hover = this.hover.bind(this);
@@ -34,6 +34,8 @@ class App extends React.Component {
         this.removeArrows = this.removeArrows.bind(this); 
         this.modalRight = this.modalRight.bind(this);
         this.modalLeft = this.modalLeft.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.formatName = this.formatName.bind(this);
     }
 
     componentDidMount() {
@@ -118,19 +120,30 @@ class App extends React.Component {
 
     getGalleryData() {
         axios.get('/gallery')
-        .then(({data}) => this.addIndex(data))
+        .then(({data}) => this.prepareData(data))
         .catch((err)=>console.log(err))
     }
 
-    addIndex(arr) {
+    /********** prepareData and formatName will eventually be moved to the backend***********/
+
+    prepareData(arr) {
         let result = [];
         for(let i = 0; i < arr.length; i++) {
             result.push(Object.assign(arr[i], {idx: i}));
+        };
+        for(let i = 0; i < result.length; i++) {
+            result[i].name = this.formatName(result[i].name);
         };
         this.setState({
             current: result.slice(0, 3),
             images: result
         });
+    }
+
+    formatName(name) {
+        let names = name.split(' '); 
+        let yelpName = names[0] + ' ' + names[1].slice(0, 1) + '.';
+        return yelpName;
     }
 
     openModal(e, image) {
@@ -155,11 +168,11 @@ class App extends React.Component {
     }
 
     addArrows() {
-        this.setState({arrows: true})
+        this.setState({arrows: true});
     }
 
     removeArrows() {
-        this.setState({arrows: false})
+        this.setState({arrows: false});
     }
 
     modalRight() {
@@ -178,10 +191,19 @@ class App extends React.Component {
         }
     }
 
+    handleKeyDown(e) {
+        if (e.key === 'ArrowLeft') {
+            this.modalLeft();
+        }
+        if (e.key === 'ArrowRight') {
+            this.modalRight();
+        }
+    }
+
     render(){
         return (
-        <div>
-            {this.state.modalIsOpen && <p className = {styles.close} onClick={() => this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
+        <div onKeyDown={(e) => this.handleKeyDown(e)}>
+            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
             <ImageGallery 
             onHover={this.hover}
             onHoverOut={this.hoverOut}
@@ -205,13 +227,32 @@ class App extends React.Component {
                 style={customStyles}
                 >
                     <div className={styles.overlay}>
-                        <span className={[styles.left, styles.arrow].join(' ')} onClick={() => this.modalLeft()}>
-                            <i class="fas fa-chevron-left"></i>
+                        <span className={[styles.left, styles.arrow].join(' ')} onClick={()=>this.modalLeft()}>
+                            <i className="fas fa-chevron-left"></i>
                         </span>
-                        <span className={[styles.right, styles.arrow].join(' ')} onClick={() => this.modalRight()}>
-                            <i class="fas fa-chevron-right"></i>
+                        <span className={[styles.right, styles.arrow].join(' ')} onClick={()=>this.modalRight()}>
+                            <i className="fas fa-chevron-right"></i>
                         </span>
-                        <img src={this.state.modal.URL} height="640px" width="900px" style={{objectFit: 'contain', position: 'relative', verticalAlign:'center', top: '-55px'}}/>
+                        <div className={styles.caption}>
+                            <p className={styles.captionInfo}>
+                                <i class="fas fa-th-large"></i> Browse all
+                                <span className={styles.number}>
+                                    12 of 15
+                                </span>
+                                <span className={styles.endCap}>
+                                    <span className={styles.capWords}>
+                                        <i className="far fa-share-square"></i> Share
+                                    </span>
+                                    <span className={styles.capWords}>
+                                        <i class="fas fa-ribbon"></i> Compliment
+                                    </span>
+                                    <span className={styles.capWords}>
+                                        <i className="fas fa-flag"></i>
+                                    </span>
+                                </span>
+                            </p>
+                        </div>
+                        <img src={this.state.modal.URL} className={styles.image} />
                     </div>
                     <div className={styles.info} style={{gridColumn: "2/span 1", backgroundColor: "#ffffff"}}>
                         <div>
@@ -246,6 +287,8 @@ class App extends React.Component {
         )
     }
 }
+
+
 
 
 export default App;

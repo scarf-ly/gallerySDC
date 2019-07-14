@@ -6,7 +6,7 @@ import customStyles from './style/modalStyle.js';
 import ImageGallery from '/Users/TinaLe/Documents/gallery/client/src/components/ImageGallery.jsx';
 import styles from './style/App.css'
 
-Modal.setAppElement('#app')
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app')
 
 class App extends React.Component {
     constructor(props){
@@ -17,7 +17,7 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            currStart: 2,
+            currStart: 0,
             arrows: false
         } 
         
@@ -76,10 +76,9 @@ class App extends React.Component {
     //     }, 7000);
     // }
 
-    clickScroll(e) {
-        e.preventDefault();
+    clickScroll() {
         let n = this.state.currStart;
-        if(n+3 < this.state.images.length){
+        if(n + 3 < this.state.images.length){
             this.setState({ 
                 current: this.state.images.slice(n, n+3),
                 currStart: n + 1
@@ -103,8 +102,8 @@ class App extends React.Component {
     //         });
     // }
 
-    backScroll(e) {
-        e.preventDefault();
+    backScroll() {
+        // e.preventDefault();
         let start = this.state.currStart; 
         if(start > 0){
             let n = this.state.currStart;
@@ -137,17 +136,20 @@ class App extends React.Component {
         };
         this.setState({
             current: result.slice(0, 3),
-            images: result})
+            images: result
+        });
     }
 
     formatName(name) {
         let names = name.split(' '); 
         let yelpName = names[0] + ' ' + names[1].slice(0, 1) + '.';
-        return yelpName
+        return yelpName;
     }
 
     openModal(e, image) {
-        e.preventDefault(); 
+        if(e) {
+            e.preventDefault(); 
+        }
         this.setState({
             modalIsOpen: true,
             modal: image});
@@ -166,11 +168,11 @@ class App extends React.Component {
     }
 
     addArrows() {
-        this.setState({arrows: true})
+        this.setState({arrows: true});
     }
 
     removeArrows() {
-        this.setState({arrows: false})
+        this.setState({arrows: false});
     }
 
     modalRight() {
@@ -285,6 +287,8 @@ class App extends React.Component {
         )
     }
 }
+
+
 
 
 export default App;

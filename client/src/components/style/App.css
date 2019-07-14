@@ -1,7 +1,7 @@
 
 /*********** modal max size ***********/
 .modal {
-    height: 620px;
+    height: 625px;
     width: 1200px;
 }
 
@@ -9,29 +9,30 @@
 
 .overlay {
     grid-column:  1 / span 1;
-    max-width: 900px; 
-    height: auto; 
+    width: 900px; 
+    height: 625px; 
 }
 
 .overlay:hover {
     cursor: pointer 
 }
 
-/* .image {
+.image {
     position: relative;
-    top: 55px; 
+    top: -55px; 
     width: 900px;
     height: 625px;
     object-fit: contain; 
-} */
+    vertical-align: middle; 
+}
 
 /*********** user info ***********/
 
 .user { 
     padding: 12px 12px 0;
+    font-weight: bold;
     font-size: 14px;
     line-height: 1.28571em;
-    font-weight: bold;
     color: #0073bb;
     text-decoration: none;
     font-family: 'Helvetica Neue'; 
@@ -52,9 +53,9 @@
 }
 
 .star {
+    padding-left: 6px;
     fill: #f15c00;
     color: #f15c00;
-    padding-left: 6px;
 }
 
 .num {
@@ -66,8 +67,8 @@
 
 .comment {
     font-size: 14px;
-    color: #333333;
     font-weight: normal;
+    color: #333333;
     margin-top: 10px; 
 }
 
@@ -183,10 +184,52 @@
     cursor: pointer; 
 }
 
+/*********** modal caption bar ***********/
 
-/* .caption {
-    color: white;
-    position: relative;
-    background-color: red;
+.caption {
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+    color: #999;
+    position: absolute;
     z-index: 1; 
-} */
+    width: 75%;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 12px;
+    bottom: -5px; 
+}
+
+
+
+.captionInfo {
+    margin-left: 8px; 
+    margin-top: 7px;
+}
+
+.number {
+    margin-left: 25em;
+    font-weight: normal;
+    color: #999; 
+}
+
+.endCap {
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+    color: #999;
+    margin-left: 24em;
+}
+
+.capWords {
+    font-family: 'Helvetica Neue';
+    font-weight: bold;
+    color: #999;; 
+    margin-right: 12px;
+}
+
+.capWords:hover {
+    color: whitesmoke;
+}
+
+
+.caption:hover {
+    color: whitesmoke;
+}

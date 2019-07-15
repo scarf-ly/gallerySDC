@@ -3,12 +3,14 @@
     width: 250px;
     height: 250px;
     vertical-align: middle; 
+    user-select: none;
 }
 
 .centerFoodImgSmall {
     width: 220px;
     height: 220px;
     vertical-align: middle; 
+    user-select: none;
 }
 
 .overlay {

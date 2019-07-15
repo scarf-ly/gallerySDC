@@ -39,8 +39,8 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getGalleryData(); 
-        this.intervalScrolling(); 
+        // this.getGalleryData(); 
+        // this.intervalScrolling(); 
     }
 
     intervalScrolling() {
@@ -203,7 +203,7 @@ class App extends React.Component {
     render(){
         return (
         <div onKeyDown={(e) => this.handleKeyDown(e)}>
-            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i></p>}
+            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <svg id="24x24_close" height="24" viewBox="0 0 24 24" width="24" className={styles.iconX}><path d="M17.657 19.07L12 13.415 6.343 19.07 4.93 17.658 10.585 12 4.93 6.343 6.342 4.93 12 10.585l5.657-5.657L19.07 6.34 13.416 12l5.657 5.657-1.413 1.414z"></path></svg></p>}
             <ImageGallery 
             onHover={this.hover}
             onHoverOut={this.hoverOut}
@@ -235,19 +235,27 @@ class App extends React.Component {
                         </span>
                         <div className={styles.caption}>
                             <p className={styles.captionInfo}>
-                                <i class="fas fa-th-large"></i> Browse all
+                                <span className={styles.capWords}>
+                                    <i class="fas fa-th-large"></i> Browse all
+                                </span>
                                 <span className={styles.number}>
-                                    12 of 15
+                                    {`${this.state.modal.idx + 1} of ${this.state.images.length}`}
                                 </span>
                                 <span className={styles.endCap}>
-                                    <span className={styles.capWords}>
-                                        <i className="far fa-share-square"></i> Share
+                                    <span className={styles.capHover} >
+                                        <span className={styles.icon}>
+                                            <svg id="18x18_share" height="18" viewBox="0 0 18 18" width="18"><path d="M17.714 6.43L13 10.356v-3.03c-1 0-5.097 1.47-6.286 3.62.274-3.08 4.286-5.5 6.286-5.5V2.5l4.714 3.93zM3 4v10h11v-2.5l1-1V15H2V3h8.5l-1 1H3z"></path></svg>
+                                        </span>
+                                        <span className={styles.capWords}>Share</span>
                                     </span>
-                                    <span className={styles.capWords}>
-                                        <i class="fas fa-ribbon"></i> Compliment
+                                    <span className={styles.capHover} >
+                                        <span className={styles.icon}>
+                                            <svg id="18x18_compliment" height="18" viewBox="0 0 18 18" width="18"><path d="M14.5 6.75a5.5 5.5 0 0 0-11 0 5.495 5.495 0 0 0 2.993 4.892L5.5 16.75l3.505-2 3.495 2-.993-5.108A5.495 5.495 0 0 0 14.5 6.75zm-5.5 4c-2.206 0-4-1.794-4-4s1.794-4 4-4 4 1.794 4 4-1.794 4-4 4z"></path></svg>
+                                        </span>
+                                        <span className={styles.capWords}>Compliment</span>
                                     </span>
-                                    <span className={styles.capWords}>
-                                        <i className="fas fa-flag"></i>
+                                    <span className={styles.icon}>
+                                        <svg id="18x18_flag" height="18" viewBox="0 0 18 18" width="18"><path d="M6 10V3c4.976 1.098 4.024-1 8 0v7c-4.024-.976-3.024 1.024-8 0zM4 2h1v14H4V2z"></path></svg>
                                     </span>
                                 </span>
                             </p>
@@ -293,3 +301,4 @@ class App extends React.Component {
 
 export default App;
 
+{/* <i className="fas fa-times" style={{fontSize: "18px", verticalAlign: "middle"}}></i> */}

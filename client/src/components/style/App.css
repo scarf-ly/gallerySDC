@@ -179,9 +179,19 @@
     
 }
 
+.iconX {
+    fill: #999; 
+    vertical-align: middle;
+}
+
 .close:hover {
     color: whitesmoke; 
     cursor: pointer; 
+    fill: whitesmoke; 
+}
+
+.close:hover .iconX {
+    fill: whitesmoke; 
 }
 
 /*********** modal caption bar ***********/
@@ -195,10 +205,11 @@
     width: 75%;
     background: rgba(0, 0, 0, 0.7);
     font-size: 12px;
-    bottom: -5px; 
+    bottom: -10px; 
+    padding-bottom:3px;
+    vertical-align: middle;
+    display: inline-block;
 }
-
-
 
 .captionInfo {
     margin-left: 8px; 
@@ -206,7 +217,7 @@
 }
 
 .number {
-    margin-left: 25em;
+    margin-left: 24em;
     font-weight: normal;
     color: #999; 
 }
@@ -221,15 +232,31 @@
 .capWords {
     font-family: 'Helvetica Neue';
     font-weight: bold;
-    color: #999;; 
-    margin-right: 12px;
+    color: #999; 
+    margin-right: 15px;
+    vertical-align: middle;
+    display: inline-block;
 }
 
-.capWords:hover {
+.icon {
+    fill: #999; 
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.capWords:hover,
+.icon:hover {
+    color: whitesmoke;
+    fill: whitesmoke;
+}
+
+.capHover:hover .icon {
+    fill: whitesmoke; 
     color: whitesmoke;
 }
-
-
-.caption:hover {
+ 
+.capHover:hover .capWords {
     color: whitesmoke;
-}
+    fill: whitesmoke; 
+} 
+

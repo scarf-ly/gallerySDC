@@ -7,7 +7,7 @@ const db = require ('./db/index.js');
 
 app.use(express.static('/Users/TinaLe/Documents/gallery/client/dist'))
 
-app.get('/gallery', (req, res)=>{
+app.get('/gallery', (req, res) => {
     db.query("SELECT * from users INNER JOIN images ON images.userID = users.id", (err, data)=>{
         if (err) {
             res.status(500).send(err); 
@@ -15,7 +15,7 @@ app.get('/gallery', (req, res)=>{
             res.send(data); 
         }
     })
-})
+});
 
 
 app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`))

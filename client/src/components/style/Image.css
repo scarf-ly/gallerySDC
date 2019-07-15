@@ -27,6 +27,7 @@
     width: 220px;
     height: 220px; 
     vertical-align: middle;  
+    user-select: none;
 }
 
 .foodImg:hover {

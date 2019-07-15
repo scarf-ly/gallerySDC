@@ -5,9 +5,10 @@ const PORT = 3001;
 const db = require ('./db/index.js');
 
 
-app.use(express.static('/Users/TinaLe/Documents/gallery/client/dist'))
+app.use(express.static('/Users/TinaLe/Documents/gallery/client/dist'));
+app.use('/restaurant/:id', express.static('/Users/TinaLe/Documents/gallery/client/dist'))
 
-app.get('/gallery', (req, res) => {
+app.get('/data/:id', (req, res) => {
     db.query("SELECT * from users INNER JOIN images ON images.userID = users.id", (err, data)=>{
         if (err) {
             res.status(500).send(err); 

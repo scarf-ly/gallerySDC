@@ -39,8 +39,8 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        // this.getGalleryData(); 
-        // this.intervalScrolling(); 
+        this.getGalleryData(); 
+        this.intervalScrolling(); 
     }
 
     intervalScrolling() {
@@ -119,7 +119,9 @@ class App extends React.Component {
       }
 
     getGalleryData() {
-        axios.get('/gallery')
+        let urlStrings = location.href.split('/')
+        let num = urlStrings [urlStrings.length - 2]; 
+        axios.get(`/data/${num}`)
         .then(({data}) => this.prepareData(data))
         .catch((err)=>console.log(err))
     }
@@ -295,9 +297,6 @@ class App extends React.Component {
         )
     }
 }
-
-
-
 
 export default App;
 

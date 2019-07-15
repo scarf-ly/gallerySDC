@@ -226,7 +226,7 @@
     font-family: 'Helvetica Neue';
     font-weight: bold;
     color: #999;
-    margin-left: 24em;
+    margin-left: 23em;
 }
 
 .capWords {
@@ -252,11 +252,9 @@
 
 .capHover:hover .icon {
     fill: whitesmoke; 
-    color: whitesmoke;
 }
  
 .capHover:hover .capWords {
     color: whitesmoke;
-    fill: whitesmoke; 
 } 
 

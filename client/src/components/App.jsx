@@ -6,7 +6,7 @@ import customStyles from './style/modalStyle.js';
 import ImageGallery from '/Users/TinaLe/Documents/gallery/client/src/components/ImageGallery.jsx';
 import styles from './style/App.css'
 
-if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#app')
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#gallery')
 
 class App extends React.Component {
     constructor(props){

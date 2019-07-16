@@ -1,14 +1,16 @@
 const express = require ('express');
 const app = express();
 const path = require('path'); 
-const PORT = 3001;
+const PORT = 3000;
 const db = require ('./db/index.js');
 
 
-app.use(express.static('/Users/TinaLe/Documents/gallery/client/dist'));
-app.use('/restaurant/:id', express.static('/Users/TinaLe/Documents/gallery/client/dist'))
+app.use('/:id', express.static('/Users/TinaLe/Documents/gallery/client/dist'));
+// app.use('/restaurant', express.static('/Users/TinaLe/Documents/gallery/client/dist'))
 
-app.get('/data/:id', (req, res) => {
+
+app.get('/gallery/:id', (req, res) => {
+    console.log("req ", req.params.id)
     db.query("SELECT * from users INNER JOIN images ON images.userID = users.id", (err, data)=>{
         if (err) {
             res.status(500).send(err); 

@@ -3,6 +3,7 @@
 .modal {
     height: 625px;
     width: 1200px;
+    display: none;
 }
 
 /*********** modal image ***********/

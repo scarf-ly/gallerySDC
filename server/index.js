@@ -5,7 +5,8 @@ const PORT = 3000;
 const db = require ('./db/index.js');
 
 
-app.use('/:id', express.static('/Users/TinaLe/Documents/gallery/client/dist'));
+app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
+
 // app.use('/restaurant', express.static('/Users/TinaLe/Documents/gallery/client/dist'))
 
 

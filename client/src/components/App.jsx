@@ -3,7 +3,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import sampleData from '../data/sampleData.js';
 import customStyles from './style/modalStyle.js';
-import ImageGallery from '/Users/TinaLe/Documents/gallery/client/src/components/ImageGallery.jsx';
+import ImageGallery from './ImageGallery.jsx';
 import styles from './style/App.css'
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#gallery')

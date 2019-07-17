@@ -274,7 +274,7 @@ class App extends React.Component {
                             <div>
                                 <span className={styles.friend}><i className="fas fa-user-friends"></i></span><span className={styles.num}>{this.state.modal.friends} </span>
                                 <span className={styles.star}><i className="far fa-star"></i></span><span className={styles.num}>{this.state.modal.stars}</span>
-                                {this.state.modal.elite && <span className={styles.elite}>Elite '19</span>}
+                                {this.state.modal.elite === 1 && <span className={styles.elite}>Elite '19</span>}
                             </div>
                             <div className={styles.comment}>{this.state.modal.caption}</div>
                             <div className={styles.date}>{this.state.modal.date}</div>

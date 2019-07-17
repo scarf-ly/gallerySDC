@@ -1,5 +1,7 @@
-var faker = require('faker');
-var db = require('./index.js');
+const faker = require('faker');
+const db = require('./index.js');
+const moment = require('moment');
+
 
 //Function to generate Users without Images Array
 
@@ -18,7 +20,7 @@ var db = require('./index.js');
 const seedURLUsers = () => {
   let urlUsers = []; 
   for (let i = 1; i < 21; i++){
-    urlUsers.push([faker.name.findName(), `https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users${i}.jpg`, Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 1)]); 
+    urlUsers.push([faker.name.findName(), `https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users${i}.jpg`, Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 120), Math.floor(Math.random() * 2)]); 
   };
   return urlUsers; 
 };
@@ -36,8 +38,10 @@ const seedURLUsers = () => {
 
 const seedImages = () => {
   let images = [];
+  let date;
   for (let i = 1; i < 21; i++){
-    images.push([`https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch${i}.jpg`, faker.lorem.words(), Math.ceil(Math.random() * 20)]);
+    date = moment(faker.date.past(5)).format('MMMM D[,] YYYY');
+    images.push([`https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch${i}.jpg`, faker.lorem.words(), Math.ceil(Math.random() * 20), date]);
   }
   return images; 
 }; 
@@ -75,7 +79,7 @@ const seedAllURLUsers = (callback) => {
 
 const seedAllImages = (callback) => {
   let images = seedImages(); 
-  db.query('insert into images (URL, caption, userID) values ?', [images], (err) => {
+  db.query('insert into images (URL, caption, userID, date) values ?', [images], (err) => {
       if (err) {
         console.log(err);
       } else {

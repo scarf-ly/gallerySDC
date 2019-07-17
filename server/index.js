@@ -19,6 +19,7 @@ app.get('/gallery/:id', (req, res) => {
     })
 });
 
+console.log()
 
 app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`))
 

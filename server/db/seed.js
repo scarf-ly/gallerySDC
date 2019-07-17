@@ -41,7 +41,7 @@ const seedImages = () => {
   let date;
   for (let i = 1; i < 21; i++){
     date = moment(faker.date.past(5)).format('MMMM D[,] YYYY');
-    images.push([`https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch${i}.jpg`, faker.lorem.words(), Math.ceil(Math.random() * 20), date]);
+    images.push([`https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch${i}.jpg`, faker.lorem.words(), Math.ceil(Math.random() * 20), date, Math.floor(Math.random() * 10)]);
   }
   return images; 
 }; 
@@ -79,7 +79,7 @@ const seedAllURLUsers = (callback) => {
 
 const seedAllImages = (callback) => {
   let images = seedImages(); 
-  db.query('insert into images (URL, caption, userID, date) values ?', [images], (err) => {
+  db.query('insert into images (URL, caption, userID, date, assign) values ?', [images], (err) => {
       if (err) {
         console.log(err);
       } else {

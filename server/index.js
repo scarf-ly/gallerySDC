@@ -7,8 +7,6 @@ const db = require ('./db/index.js');
 
 app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
-// app.use('/restaurant', express.static('/Users/TinaLe/Documents/gallery/client/dist'))
-
 
 app.get('/gallery/:id', (req, res) => {
     console.log("req ", req.params.id)

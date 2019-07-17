@@ -18,7 +18,7 @@ var db = require('./index.js');
 const seedURLUsers = () => {
   let urlUsers = []; 
   for (let i = 1; i < 21; i++){
-    urlUsers.push([faker.name.findName(), `https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users${i}.jpg`]); 
+    urlUsers.push([faker.name.findName(), `https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users${i}.jpg`, Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 1)]); 
   };
   return urlUsers; 
 };
@@ -62,7 +62,7 @@ const seedAllUsers = (callback) => {
 
 const seedAllURLUsers = (callback) => {
   let urlUsers = seedURLUsers();
-  db.query ('insert into users (name, userURL) values ?', [urlUsers], (err)=>{
+  db.query ('insert into users (name, userURL, friends, stars, elite) values ?', [urlUsers], (err)=>{
     if (err){
       console.log(err);
     } else {

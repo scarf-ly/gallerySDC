@@ -9,7 +9,8 @@ app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')))
 
 
 app.get('/gallery/:id', (req, res) => {
-    let num = req.params.id.split('')[1];
+    let split = req.params.id.split('');
+    let num = split[split.length - 1];
     console.log(num);
     db.query(`SELECT * from users INNER JOIN images ON images.userID = users.id AND assign = ${num}`, (err, data)=>{
         if (err) {

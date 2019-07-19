@@ -20,9 +20,9 @@
 
 .image {
     position: relative;
-    top: -55px; 
+    top: -40px; 
     width: 900px;
-    height: 625px;
+    height: 650px;
     object-fit: contain; 
     vertical-align: middle; 
 }
@@ -163,12 +163,13 @@
 
 /*********** close btn ***********/
 
+
 .close {
     position: relative;
     z-index: 4; 
     float: right; 
-    margin-right: 8em; 
-    margin-top: -320px; 
+    margin-right: 150px; 
+    margin-top: -350px; 
     font-size: 14px;
     line-height: 1.28571em;
     color: #999;
@@ -262,3 +263,15 @@
     color: whitesmoke;
 } 
 
+.see {
+    position: relative;
+    margin-left: 685px;
+    color:  #0073bb;
+    font-size: 14px;
+    font-family: 'Helvetica Neue';
+}
+
+.see:hover {
+    text-decoration: underline;
+    cursor: pointer; 
+}

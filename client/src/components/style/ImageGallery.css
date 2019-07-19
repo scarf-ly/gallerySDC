@@ -1,6 +1,8 @@
 
 .gallery{
     font-size: 12px;
+    margin-right: none; 
+    width: 800px;
 }
 
 .left {  
@@ -12,7 +14,7 @@
     cursor: pointer;
 }
 
-.left2{
+.left2 {
     position: relative; 
     color: rgba(245, 245, 245, 0);
     font-size: 44px; 
@@ -20,7 +22,6 @@
     z-index: 1;
     cursor: pointer;
 }
-
 
 
 .right { 

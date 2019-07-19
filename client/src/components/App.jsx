@@ -17,7 +17,7 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            currStart: 0,
+            currStart: 3,
             arrows: false
         } 
         
@@ -42,6 +42,10 @@ class App extends React.Component {
         this.getGalleryData(); 
         this.intervalScrolling(); 
     }
+
+    afterOpenModal() {
+        document.body.style.overflow = 'hidden'
+      }
 
     intervalScrolling() {
         setInterval(() => { 
@@ -159,6 +163,7 @@ class App extends React.Component {
     }
 
     closeModal() {
+        document.body.style.overflow = 'auto'
         this.setState({modalIsOpen: false});
     }
 
@@ -206,7 +211,7 @@ class App extends React.Component {
     render(){
         return (
         <div onKeyDown={(e) => this.handleKeyDown(e)}>
-            {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <svg id="24x24_close" height="24" viewBox="0 0 24 24" width="24" className={styles.iconX}><path d="M17.657 19.07L12 13.415 6.343 19.07 4.93 17.658 10.585 12 4.93 6.343 6.342 4.93 12 10.585l5.657-5.657L19.07 6.34 13.416 12l5.657 5.657-1.413 1.414z"></path></svg></p>}
+                {this.state.modalIsOpen && <p className = {styles.close} onClick={()=>this.closeModal()}> Close <svg id="24x24_close" height="24" viewBox="0 0 24 24" width="24" className={styles.iconX}><path d="M17.657 19.07L12 13.415 6.343 19.07 4.93 17.658 10.585 12 4.93 6.343 6.342 4.93 12 10.585l5.657-5.657L19.07 6.34 13.416 12l5.657 5.657-1.413 1.414z"></path></svg></p>}
             <ImageGallery 
             onHover={this.hover}
             onHoverOut={this.hoverOut}
@@ -221,7 +226,7 @@ class App extends React.Component {
             arrows={this.state.arrows}
             modal={this.state.modalIsOpen}
             />
-            
+            <div className={styles.see}> <i class="fas fa-th-large" style={{color:"#999999", marginRight:"4px"}}>   </i>See All {this.state.images.length}</div>
             <div className={styles.modal}>
                 <Modal
                 isOpen={this.state.modalIsOpen}

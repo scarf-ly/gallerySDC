@@ -1,14 +1,14 @@
 
 .centerFoodImg {
-    width: 250px;
-    height: 250px;
+    width: 270px;
+    height: 270px;
     vertical-align: middle; 
     user-select: none;
 }
 
 .centerFoodImgSmall {
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
     vertical-align: middle; 
     user-select: none;
 }

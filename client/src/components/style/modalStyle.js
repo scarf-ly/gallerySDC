@@ -8,9 +8,11 @@ const customStyles = {
         border: "0",
         background: "rgba(0, 0, 0, 0.7)",
         overflow: "hidden",
+        float: "center" 
     },
     overlay: {
         background: "rgba(0, 0, 0, 0.7)",
+        zIndex: 3
     },
   };
 

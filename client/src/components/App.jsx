@@ -39,9 +39,13 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.getGalleryData(); 
-        this.intervalScrolling(); 
+        // this.getGalleryData(); 
+        // this.intervalScrolling(); 
     }
+
+    afterOpenModal() {
+        document.body.style.overflow = 'hidden'
+      }
 
     intervalScrolling() {
         setInterval(() => { 
@@ -159,6 +163,7 @@ class App extends React.Component {
     }
 
     closeModal() {
+        document.body.style.overflow = 'auto'
         this.setState({modalIsOpen: false});
     }
 

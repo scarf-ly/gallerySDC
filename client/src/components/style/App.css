@@ -165,10 +165,10 @@
 
 .close {
     position: relative;
-    z-index: 1; 
+    z-index: 4; 
     float: right; 
-    margin-right: 40px; 
-    margin-top: 0px; 
+    margin-right: 8em; 
+    margin-top: -320px; 
     font-size: 14px;
     line-height: 1.28571em;
     color: #999;
@@ -183,16 +183,19 @@
 .iconX {
     fill: #999; 
     vertical-align: middle;
+    z-index: 4; 
 }
 
 .close:hover {
     color: whitesmoke; 
     cursor: pointer; 
     fill: whitesmoke; 
+    z-index: 4; 
 }
 
 .close:hover .iconX {
     fill: whitesmoke; 
+    z-index: 4; 
 }
 
 /*********** modal caption bar ***********/

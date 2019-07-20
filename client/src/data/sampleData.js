@@ -1,45 +1,53 @@
 let sampleData = [
     {
-        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/munch26.jpg',
-        caption: 'vel occaecati voluptas',
+        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
+        caption: '',
         id: 26,
-        name: 'Bertha Sporer',
+        name: '',
         userID: 1,
-        userURL: null,
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
         idx: 0
     },
 
     {
-        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/munch36.jpg',
-        caption: 'ab iure maxime',
+        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
+        caption: '',
         id: 36,
-        name: 'Estelle Sipes',
+        name: '',
         userID: 40,
-        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users20.jpg', 
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg', 
         idx: 1
     }, 
 
     {
-        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/munch47.jpg',
-        caption: 'eveniet non nihil',
+        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
+        caption: '',
         id: 47,
-        name: 'Giovani Green',
+        name: '',
         userID: 35,
-        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users15.jpg',
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
         idx: 2
     },
 
     {
-        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/munch42.jpg',
-        caption: 'eveniet non nihil',
+        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
+        caption: '',
         id: 47,
-        name: 'Tom F.',
+        name: '',
         userID: 35,
-        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/Users/users12.jpg',
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
         idx: 3
-    }
+    },
 
-
+    {
+        URL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
+        caption: '',
+        id: 47,
+        name: '',
+        userID: 35,
+        userURL: 'https://munch-gallery.s3-us-west-1.amazonaws.com/load.jpg',
+        idx: 4
+    },
 
 ]
 

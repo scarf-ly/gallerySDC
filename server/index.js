@@ -1,10 +1,11 @@
 const express = require ('express');
 const app = express();
+var compression = require('compression')
 const path = require('path'); 
 const PORT = 3000;
 const db = require ('./db/index.js');
 
-
+app.use(compression());
 app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
 

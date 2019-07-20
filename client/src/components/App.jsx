@@ -17,7 +17,7 @@ class App extends React.Component {
             modalIsOpen: false,
             modal: '',
             hover: false,
-            currStart: 3,
+            currStart: 0,
             arrows: false
         } 
         

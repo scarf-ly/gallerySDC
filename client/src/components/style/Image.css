@@ -24,15 +24,15 @@
 }
 
 .foodImg {
-    width: 240px;
-    height: 240px; 
+    width: 220px;
+    height: 220px; 
     vertical-align: middle;  
     user-select: none;
 }
 
 .foodImg:hover {
-    width: 270px;
-    height: 270px; 
+    width: 250px;
+    height: 250px; 
 }
 
 .userImage {

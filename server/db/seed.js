@@ -47,6 +47,7 @@ const seedAllImages = (callback) => {
       } else {
         callback(null, 'Seeding successful');
       }
+      process.exit();
     })
 };
 

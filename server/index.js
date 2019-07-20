@@ -1,12 +1,12 @@
 const express = require ('express');
-// var compression = require('compression');
 const app = express();
+var compression = require('compression')
 const path = require('path'); 
 const PORT = 3000;
 const db = require ('./db/index.js');
 
-// app.use(compression());
-app.use('/:id', (path.resolve(__dirname, '..', 'client', 'dist')));
+app.use(compression());
+app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
 
 app.get('/gallery/:id', (req, res) => {

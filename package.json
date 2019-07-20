@@ -7,7 +7,7 @@
     "test": "jest",
     "react-dev": "webpack -p",
     "start": "node server/index.js",
-    "database": "mysql -uroot < server/db/schema.sql",
+    "database": "mysql -h db -uroot -ppassword < server/db/schema.sql",
     "seed": "node ./server/db/seed.js"
   },
   "jest": {

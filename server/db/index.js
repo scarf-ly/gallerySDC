@@ -2,10 +2,10 @@ var faker = require('faker');
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'db',
   user     : 'root',
   database : 'munch',
-  // password: 'password'
+  password: 'password'
 });
  
 connection.connect();

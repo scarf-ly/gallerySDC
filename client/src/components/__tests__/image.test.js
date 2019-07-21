@@ -5,7 +5,7 @@ import Image from '/Users/TinaLe/Documents/gallery/client/src/components/Image.j
 
 Enzyme.configure({ adapter: new Adapter() }); 
 
-describe('Image', () => {
+xdescribe('Image', () => {
     let wrapper; 
 
     beforeEach(() => {

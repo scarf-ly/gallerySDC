@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "react-dev": "webpack -p",
+    "react-dev": "webpack -d --watch",
     "start": "node server/index.js",
     "database": "mysql -h db -uroot -ppassword < server/db/schema.sql",
     "seed": "node ./server/db/seed.js"
@@ -57,6 +57,7 @@
     "identity-obj-proxy": "^3.0.0",
     "moment": "^2.24.0",
     "mysql": "^2.17.1",
+    "puppeteer": "^1.18.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-modal": "^3.8.2",

@@ -5,7 +5,7 @@ import CenterImage from '/Users/TinaLe/Documents/gallery/client/src/components/C
 
 Enzyme.configure({ adapter: new Adapter() }); 
 
-describe('Center Image', () => {
+xdescribe('Center Image', () => {
 
     let wrapper; 
     beforeEach(() => {

@@ -1,6 +1,4 @@
 import puppeteer from 'puppeteer'; 
-import { exportAllDeclaration, tsObjectKeyword } from '@babel/types';
-import { createPublicKey } from 'crypto';
 
 const pageUrl = 'http://ec2-52-53-207-161.us-west-1.compute.amazonaws.com:5004/99/';
 
@@ -11,7 +9,6 @@ const height = 720;
 
 beforeAll(async () => {
     browser = await puppeteer.launch({
-      headless: false,
       slowMo: 80,
       args: [`--window-size=${width},${height}`]
     });
@@ -62,5 +59,14 @@ beforeAll(async () => {
         expect(img).toEqual(img3);
     });
 
+    test('it closes modal on close click', async () => {
+        var selector = '.Image__foodImg__2MSw_';
+        await page.click(selector); 
+        var img = await page.$$eval('img.App__image__jLJgG[src]', imgs => imgs.map(img => img.getAttribute('src')));
+        expect(img).toHaveLength(1); 
+        await page.click('.App__close__1i5e2'); 
+        img = await page.$$eval('img.App__image__jLJgG[src]', imgs => imgs.map(img => img.getAttribute('src')));
+        expect(img).toHaveLength(0); 
+    });
 
   })

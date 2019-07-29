@@ -44,8 +44,7 @@ const helpfulDataGenerator = (i) => {
   return help;
 }
 
-/* START WRITING CSV FILE */
-const startTime = Date.now();
+
 
 /* WRITING IMAGE DATA to CSV FILE */
 const writeImagesTable = fs.createWriteStream('imagesData.csv');
@@ -103,9 +102,3 @@ function writeHelpfulMTimes(writer) {
 writeImagesMTimes(writeImagesTable);
 writeUsersMTimes(writeUsersTable);
 writeHelpfulMTimes(writeHelpfulTable)
-const endTime = Date.now();
-console.log(endTime-startTime + 's');
-
-
-  //10s seeding images cvs file, loading data 2min
-  //19s seeding images and users files, loading images data within 2 min,  users data within 1min,

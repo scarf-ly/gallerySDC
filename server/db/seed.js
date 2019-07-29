@@ -7,7 +7,9 @@ const moment = require('moment');
 const seedURLUsers = () => {
   let urlUsers = []; 
   for (let i = 1; i <= 60; i++){
-    urlUsers.push([faker.name.findName(), `https://munch-gallery.s3-us-west-1.amazonaws.com/Users1/user${i}.jpg`, Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 120), Math.floor(Math.random() * 2)]); 
+    let pic = faker.image.avatar();
+    // urlUsers.push([faker.name.findName(), `https://munch-gallery.s3-us-west-1.amazonaws.com/Users1/user${i}.jpg`, Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 120), Math.floor(Math.random() * 2)]); 
+    urlUsers.push([faker.name.findName(), pic ,Math.ceil(Math.random() * 120), Math.ceil(Math.random() * 120), Math.floor(Math.random() * 2)])
   };
   return urlUsers; 
 };
@@ -17,9 +19,11 @@ const seedURLUsers = () => {
 const seedImages = () => {
   let images = [];
   let date;
-  for (let i = 1; i <= 200; i++){
+  let pic = faker.image.food();
+  for (let i = 1; i <= 1000; i++){
     date = moment(faker.date.past(5)).format('MMMM D[,] YYYY');
-    images.push([`https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch${i}.jpg`, faker.lorem.words(), Math.ceil(Math.random() * 20), date, Math.floor(Math.random() * 10)]);
+    // images.push([`https://munch-gallery.s3-us-west-1.amazonaws.com/Small/munch${i}.jpg`, faker.lorem.words(), Math.ceil(Math.random() * 20), date, Math.floor(Math.random() * 10)]);
+    images.push([pic,faker.lorem.words(), Math.ceil(Math.random() * 60), date, Math.ceil(Math.random() * 200)])
   }
   return images; 
 }; 

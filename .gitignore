@@ -2,3 +2,7 @@ node_modules
 .DS_Store
 client/dist/bundle.js
 coverage
+server/cassandraDB/imagesData.csv
+server/cassandraDB/helpfulData.csv
+server/postgresDB/imagesData.csv
+server/postgresDB/helpfulData.csv

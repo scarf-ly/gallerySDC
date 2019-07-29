@@ -8,7 +8,6 @@ const db = require ('./db/index.js');
 app.use(compression());
 app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
-
 app.get('/gallery/:id', (req, res) => {
     let split = req.params.id.split('');
     let num = split[split.length - 1];
@@ -21,8 +20,6 @@ app.get('/gallery/:id', (req, res) => {
         }
     })
 });
-
-console.log()
 
 app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`))
 

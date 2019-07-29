@@ -5,4 +5,5 @@ coverage
 server/cassandraDB/imagesData.csv
 server/cassandraDB/helpfulData.csv
 server/postgresDB/imagesData.csv
+server/postgresDB/usersData.csv
 server/postgresDB/helpfulData.csv

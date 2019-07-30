@@ -48,7 +48,7 @@ const imageDataGenerator = (i) => {
 const helpfulDataGenerator = (i) => {
   var helpArr = []
   var id = i;
-  var ishelpful = 't';
+  var ishelpful = 'true';
   var imageid = faker.random.number({min:1, max:50000000});
   var userid = faker.random.number({min:1, max:10000000});
   helpArr.push(id,ishelpful,imageid,userid);
@@ -59,7 +59,7 @@ const helpfulDataGenerator = (i) => {
 
 
 /* WRITING IMAGE DATA to CSV FILE */
-const writeImagesTable = fs.createWriteStream('imagesData.csv');
+// const writeImagesTable = fs.createWriteStream('imagesData.csv');
 function writeImagesMTimes(writer) {
   let i = 1;
   write();
@@ -95,6 +95,6 @@ function writeHelpfulMTimes(writer) {
   }
 }
 
-writeImagesMTimes(writeImagesTable);
+// writeImagesMTimes(writeImagesTable);
 writeHelpfulMTimes(writeHelpfulTable)
 

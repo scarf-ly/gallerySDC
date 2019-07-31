@@ -4,8 +4,4 @@ node_modules
 client/dist/bundle.js
 coverage
 *.csv
-server/cassandraDB/imagesData.csv
-server/cassandraDB/helpfulData.csv
-server/postgresDB/helpfulData.csv
-server/postgresDB/imagesData.csv
 server/s3.env.js

@@ -3,6 +3,7 @@ node_modules
 .circleci
 client/dist/bundle.js
 coverage
+*.csv
 server/cassandraDB/imagesData.csv
 server/cassandraDB/helpfulData.csv
 server/postgresDB/helpfulData.csv

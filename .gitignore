@@ -1,7 +1,0 @@
-node_modules
-.DS_Store
-.circleci
-client/dist/bundle.js
-coverage
-*.csv
-server/s3.env.js

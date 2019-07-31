@@ -18,7 +18,7 @@ const userDataGenerator = (i) => {
   return userArr;
 };
 //Generate 10,000,000 users' info
-for(var i=1; i<=10000000; i++){
+for(var i=1; i<=1; i++){
   allUsers.push(userDataGenerator(i));
 }
 
@@ -31,7 +31,7 @@ const imageDataGenerator = (i) => {
   var caption = faker.lorem.words();
   var restaurantID = faker.random.number({min:1, max:10000000});
   var date = moment(faker.date.past(5)).format('YYYY-MM-DD');
-  var userInfo = allUsers[faker.random.number({min:0, max:9999999})];
+  var userInfo = allUsers[faker.random.number({min:0, max:0})];
   var userID = userInfo[0]
   var friends = userInfo[1];
   var name = userInfo[2];
@@ -59,7 +59,7 @@ const helpfulDataGenerator = (i) => {
 
 
 /* WRITING IMAGE DATA to CSV FILE */
-// const writeImagesTable = fs.createWriteStream('imagesData.csv');
+const writeImagesTable = fs.createWriteStream('imagesData.csv');
 function writeImagesMTimes(writer) {
   let i = 1;
   write();
@@ -95,6 +95,6 @@ function writeHelpfulMTimes(writer) {
   }
 }
 
-// writeImagesMTimes(writeImagesTable);
+writeImagesMTimes(writeImagesTable);
 writeHelpfulMTimes(writeHelpfulTable)
 

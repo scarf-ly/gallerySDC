@@ -3,10 +3,11 @@ const path = require('path');
 const aws = require('aws-sdk');
 const env = require('../server/s3.env.js');
 const fs = require('fs');
-const faker = require('faker')
+const faker = require('faker');
 const https = require('https');
 const Stream = require('stream').Transform;
-const request = require('request')
+const request = require('request');
+
 aws.config.update({  
     accessKeyId: env.AWS_ACCESS_KEY,
     secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
@@ -34,26 +35,26 @@ function getImage (url, filename,callback) {
             }); 
         } 
     })  
-}
+};
 
-// for(var i=1; i<=1000; i++) {
-//     var image  = "https://source.unsplash.com/random/?dish"
-//     getImage(image, `food/${i}.png` ,(err,data)=> {
-//         if (err) {
-//             console.log('Error:',err)
-//         }  else {
-//             console.log('data upload.')
-//         }
-//     });
-// }
-
-for(var i=1; i<=1; i++) {
-    var image  = "https://source.unsplash.com/random/?avatar"
-    getImage(image, `test/${i}.png` ,(err,data)=> {
+for(var i=1; i<=1000; i++) {
+    var image  = "https://source.unsplash.com/random/?dish"
+    getImage(image, `food/${i}.png` ,(err,data)=> {
         if (err) {
             console.log('Error:',err)
         }  else {
             console.log('data upload.')
         }
     });
-}
+};
+
+for(var i=1; i<=500; i++) {
+    var image  = "https://source.unsplash.com/random/?avatar"
+    getImage(image, `user/${i}.png` ,(err,data)=> {
+        if (err) {
+            console.log('Error:',err)
+        }  else {
+            console.log('data upload.')
+        }
+    });
+};

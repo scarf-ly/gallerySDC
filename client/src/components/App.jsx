@@ -45,7 +45,7 @@ class App extends React.Component {
 
     afterOpenModal() {
         document.body.style.overflow = 'hidden'
-      }
+    }
 
     intervalScrolling() {
         setInterval(() => { 
@@ -86,9 +86,9 @@ class App extends React.Component {
             this.setState({ 
                 current: this.state.images.slice(n, n+3),
                 currStart: n + 1
-                });
-            }
+            });
         }
+    }
 
     // ****************Continuous Scroll*************************//
 
@@ -125,8 +125,7 @@ class App extends React.Component {
     getGalleryData() {
         let urlStrings = location.href.split('/')
         let num = urlStrings [urlStrings.length - 2]; 
-        console.log(num);
-        axios.get(`/gallery/:${num}`)
+        axios.get(`/${num}/gallery`)
         .then(({data}) => this.prepareData(data))
         .catch((err) => console.log(err))
     }
@@ -134,17 +133,24 @@ class App extends React.Component {
     /********** prepareData and formatName will eventually be moved to the backend***********/
 
     prepareData(arr) {
+        console.log("data====",arr)
         let result = [];
         for(let i = 0; i < arr.length; i++) {
             result.push(Object.assign(arr[i], {idx: i}));
         };
+        
         for(let i = 0; i < result.length; i++) {
-            result[i].name = this.formatName(result[i].name);
+            result[i].name = this.formatName(result[i].username);
+            result[i].URL = result[i].imageurl;
+            result[i].caption = result[i].imagecaption;
+            result[i].stars = result[i].reviews;
+            result[i].userURL = result[i].userurl;
         };
         this.setState({
             current: result.slice(0, 3),
             images: result
         });
+        
     }
 
     formatName(name) {
@@ -161,7 +167,7 @@ class App extends React.Component {
             modalIsOpen: true,
             modal: image});
     }
-
+   
     closeModal() {
         document.body.style.overflow = 'auto'
         this.setState({modalIsOpen: false});

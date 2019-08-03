@@ -11,7 +11,6 @@ Web page header for a restaurant reviews service, scarf.ly.
 | GET          | /gallery/:id/:imageID/:userID  | Retrieve image details for galleryView 
 | POST         | /gallery/:id/:userID           | Insert image(s) for a specific restaurant with author's userID
 | PATCH        | /gallery/:id/:imageID/:userID  | Update info for a specific image 
-| PUT          | /gallery/:id                   | If this restaurant id exists, replace image(s)
 | DELETE       | /gallery/:id/                  | If thisrestaurnat id exists, delete image(s)
 
 

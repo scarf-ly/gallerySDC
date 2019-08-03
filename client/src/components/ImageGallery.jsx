@@ -11,7 +11,7 @@ const ImageGallery = (props) => (
         {props.arrows && !props.modal && <span className={styles.left}><i className="fas fa-chevron-left" onClick={()=>props.onBackScroll()}></i></span>}
         {!props.arrows && <span className={styles.left2}><i className="fas fa-chevron-left"></i></span>}
         <Image image ={props.images[0]} onOpenClick = {props.onOpenClick} onHover={props.onHover} onHoverOut={props.onHoverOut}/>
-        <CenterImage image={props.images[1]} onOpenClick = {props.onOpenClick} hover={props.hover}/>
+        <CenterImage image={props.images[1]} onOpenClick = {props.onOpenClick}  hover={props.hover}/>
         <Image image ={props.images[2]} onOpenClick = {props.onOpenClick} onHover={props.onHover} onHoverOut={props.onHoverOut}/>
         {/* This code code prevents the gallery from repositioning with the arrows */}
         {props.arrows && !props.modal && <span className={styles.right}><i className="fas fa-chevron-right" onClick={(e)=>props.onClickScroll(e)}></i></span>}

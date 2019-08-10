@@ -125,7 +125,7 @@ class App extends React.Component {
     getGalleryData() {
         let urlStrings = location.href.split('/')
         let num = urlStrings [urlStrings.length - 2]; 
-        axios.get(`/${num}/gallery`)
+        axios.get(`/${num}i/gallery`)
         .then(({data}) => {
             if(data.length>=3){
                 this.prepareData(data)

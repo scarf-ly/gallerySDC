@@ -1,25 +1,23 @@
 const newrelic = require('newrelic');
 const express = require ('express');
 const app = express();
-// var compression = require('compression')
+var compression = require('compression')
 const path = require('path'); 
 const bodyParser = require('body-parser');
 const PORT = 3000;
-const responseTime = require('response-time')
+
 const db = require ('./postgresDB/index.js');
 const redis = require('redis');
-const faker = require('faker');
-const moment = require('moment');
 
 var redisClient = redis.createClient();
-// app.use(compression());
+app.use(compression());
 
 redisClient.on('error', (err) => {
   console.log("Error " + err);
 });
 
 app.use(bodyParser.json())
-// app.use(responseTime());
+
 app.use('/:id', express.static(path.resolve(__dirname, '..', 'client', 'dist')));
 
 var cacheImage = (req,res,next) => {
@@ -50,13 +48,14 @@ var cacheVote = (req,res,next) => {
     })
 };
 
-app.get('/:id/gallery', (req, res) => {
+
+app.get('/:id/gallery', cacheImage, (req, res) => {
     let num = req.params.id;
     db.pool.query(`select * from images,users where images.restaurantid=${num} and images.userid=users.id ;`, (err, data)=>{
         if (err) {
             res.status(500).send(err); 
         } else {
-            // redisClient.set(num.toString(),JSON.stringify(data.rows))
+            redisClient.set(num.toString(),JSON.stringify(data.rows))
             res.json(data.rows); 
         }
     })
@@ -84,8 +83,8 @@ app.post('/:id/gallery', (req, res) => {
             res.status(500).send(err); 
         } 
     })
-    console.log(req.params);
-    console.log('body',req.body)
+    // console.log(req.params);
+    // console.log('body',req.body)
 });
 
 

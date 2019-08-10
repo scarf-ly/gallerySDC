@@ -24,7 +24,7 @@ function getImage (url, filename,callback) {
             s3.putObject({
                 Body: body,
                 Key: filename,
-                Bucket: 'scarfly',
+                Bucket: 'scarflysdc',
                 ContentType: 'image/jpeg',
                 ACL: 'public-read'
             }, (error, data)=> { 
@@ -48,13 +48,13 @@ for(var i=1; i<=1000; i++) {
     });
 };
 
-for(var i=1; i<=500; i++) {
-    var image  = "https://source.unsplash.com/random/?avatar"
-    getImage(image, `user/${i}.png` ,(err,data)=> {
-        if (err) {
-            console.log('Error:',err)
-        }  else {
-            console.log('data upload.')
-        }
-    });
-};
+// for(var i=1; i<=500; i++) {
+//     var image  = "https://source.unsplash.com/random/?avatar"
+//     getImage(image, `user/${i}.png` ,(err,data)=> {
+//         if (err) {
+//             console.log('Error:',err)
+//         }  else {
+//             console.log('data upload.')
+//         }
+//     });
+// };

@@ -6,3 +6,5 @@ coverage
 *.csv
 server/s3.env.js
 newrelic.js
+*.log
+*.rdb

@@ -1,23 +1,29 @@
-version: '2.1'
+version: '3'
 
 services:
-  db:
-    image: mysql:5.7
-    ports: 
-      - '3306:3306'
-    environment: 
-      MYSQL_USER: "user"
-      MYSQL_PASSWORD: "password"
-      MYSQL_ROOT_PASSWORD: "password"
-    healthcheck: 
-        test: ["CMD", "mysqladmin", "ping", "-h", "db", "-u", "root", "-ppassword"]
-        timeout: 20s
-        retries: 10 
-    
-  gallery: 
+  server:
     build: .
-    depends_on: 
-      db:
-        condition: service_healthy
-    ports:
+    depends_on:
+      - 'database'
+    ports: 
       - '3000:3000'
+
+  database:
+    image: postgres:11-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 'postgres'
+    volumes:
+      - database_data:/var/lib/postgresql/data
+
+  # redis:
+  #   image: redis
+  #   expose:
+  #     - "6379"
+  #   command: redis-server 
+
+volumes:
+  database_data:
+    driver: local

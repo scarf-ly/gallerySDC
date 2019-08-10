@@ -6,7 +6,7 @@ const moment = require('moment');
 const imageDataGenerator = () => {
   var imageArr = [];
   var randomPicId = faker.random.number({min:1, max:1000})
-  var url = `https://scarfly.s3-us-west-1.amazonaws.com/food/${randomPicId}.png`;
+  var url = `https://scarflysdc.s3-us-west-1.amazonaws.com/food/${randomPicId}.png`;
   var caption = faker.lorem.words();
   var userID = faker.random.number({min:1, max:500});
   var restaurantID = faker.random.number({min:1, max:10000000});
@@ -22,7 +22,7 @@ const userDataGenerator = () => {
   var userArr = []
   var randomPicId = faker.random.number({min:1, max:500})
   var name = faker.name.findName(); 
-  var url = `https://scarfly.s3-us-west-1.amazonaws.com/user/${randomPicId}.png`;
+  var url = `https://scarflysdc.s3-us-west-1.amazonaws.com/user/${randomPicId}.png`;
   var friends = faker.random.number({min:0, max:50000});
   var reviews = faker.random.number({min:0, max:10000});
   var elite = ['true','false'][faker.random.number({min:0, max:1})];
@@ -65,7 +65,7 @@ function writeImagesMTimes(writer) {
 }
 
 /* WRITING USER DATA to CSV FILE */
-const writeUsersTable = fs.createWriteStream('usersData.csv');
+// const writeUsersTable = fs.createWriteStream('usersData.csv');
 function writeUsersMTimes(writer) {
   let i = 1;
   write();
@@ -83,7 +83,7 @@ function writeUsersMTimes(writer) {
 }
 
 /* WRITING HELPFUL DATA to CSV FILE  */
-const writeHelpfulTable = fs.createWriteStream('helpfulData.csv');
+// const writeHelpfulTable = fs.createWriteStream('helpfulData.csv');
 function writeHelpfulMTimes(writer) {
   let i = 1;
   write();
@@ -101,5 +101,5 @@ function writeHelpfulMTimes(writer) {
 }
 
 writeImagesMTimes(writeImagesTable);
-writeUsersMTimes(writeUsersTable);
-writeHelpfulMTimes(writeHelpfulTable)
+// writeUsersMTimes(writeUsersTable);
+// writeHelpfulMTimes(writeHelpfulTable)

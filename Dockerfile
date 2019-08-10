@@ -1,6 +1,4 @@
-FROM node:8.16.0
-
-RUN apt-get update && apt-get install -y mysql-client && rm -rf /var/lib/apt
+FROM node:8.15-alpine
 
 RUN mkdir -p /src/app
 
@@ -10,9 +8,6 @@ COPY . /src/app
 
 RUN npm install
  
-EXPOSE 5000
+EXPOSE 5432
 
-CMD npm run database && \
-    npm run seed && \
-    npm run react-dev && \
-    npm start
+CMD ["npm", "run", "startpg"]

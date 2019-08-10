@@ -126,14 +126,20 @@ class App extends React.Component {
         let urlStrings = location.href.split('/')
         let num = urlStrings [urlStrings.length - 2]; 
         axios.get(`/${num}/gallery`)
-        .then(({data}) => this.prepareData(data))
+        .then(({data}) => {
+            if(data.length>=3){
+                this.prepareData(data)
+            } else {
+                this.prepareData(sampleData)
+            }
+        })
         .catch((err) => console.log(err))
     }
 
     /********** prepareData and formatName will eventually be moved to the backend***********/
 
     prepareData(arr) {
-        console.log("data====",arr)
+        console.log("data====",arr.length)
         let result = [];
         for(let i = 0; i < arr.length; i++) {
             result.push(Object.assign(arr[i], {idx: i}));
